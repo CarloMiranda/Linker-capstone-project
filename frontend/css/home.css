@@ -1,0 +1,211 @@
+body {
+    background: #ffffff;
+}
+.main {
+    display: flex;
+}
+.navbar {
+    border-right: 1px solid #e6e6e6;
+    flex-direction: column;
+    width: 150px;
+    height: 100%;
+}
+.navbar .logo {
+    text-align: center;
+    position: fixed;
+    top: 2%;
+}
+.navbar .logo2 {
+    text-align: center;
+    position: fixed;
+    top: 70%;
+}
+.navbar img {
+    width: 100%;
+}
+.navbar ul {
+    list-style-type: none;
+    position: fixed;
+    top: 15%;
+}
+.navbar li {
+    padding-top: 50px;
+}
+.navbar li a{
+    text-decoration: none; 
+    font-size: 25px;
+}
+.navbar a:hover{
+    color: #333;
+}
+.profile {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    bottom: 2%;
+}
+.profile img {
+    margin-bottom: 25px;
+    width: 30px;
+    object-fit: cover;
+    border-radius: 50%
+}
+.profile a {
+    padding-left: 10px;
+    font-size: 9px;
+}
+.profile button {
+    margin-left: 10px;
+    border: none;
+    background: #1183d6;
+    border-radius: 5px;
+    color: #ccc;
+    
+}
+.container {
+    width: 800px;
+}
+.user-post {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    border-bottom: #ccc 1px solid;
+    padding: 10px;
+    box-shadow: 0px 10px 15px -15px #111;
+}
+.user-post button {
+    width: 100%;
+    border: none;
+    border-radius: 50px;
+    padding: 10px;
+    margin-left: 10px;
+    background-color: rgb(240, 239, 239);
+}
+.user-post button:hover {
+    background-color: #ccc;
+}
+.users-post div {
+    padding-left: 5px;
+}
+:is(.user-post, .users-post, .follow) img {
+    width: 40px;
+    object-fit: cover;
+    border-radius: 50%;    
+}
+.users-post {
+    display: flex;
+    padding-bottom: 10px;
+}
+.posted .posted-img img {
+    object-fit: cover;
+    width: 100%;
+}
+.posted {
+    padding: 20px;
+    margin: 20px 0;
+}
+.posted-img {
+    margin-bottom: 40px;
+}
+.reactions {
+    border-top: #ccc 1px solid;
+    padding-top: 10px;
+}
+.posted span { 
+    margin-right: 25px;
+}
+.posted {
+    background: rgb(240, 239, 239);
+    border-radius: 10px;
+}
+.side-content {
+    border-left: 1px solid #e6e6e6;
+    padding: 10px;
+    width: 400px;
+    text-align: center;
+}
+.search-bar form {
+    color: #555;
+    display: flex;
+    padding: 2px;
+    border: 1px solid currentColor;
+    border-radius: 50px;
+    margin-bottom: 30px;
+ }
+.search-bar input[type="search"] {
+    border: none;
+    background: transparent;
+    padding: 5px;
+    font-size: 14px;
+    color: inherit;
+    border: 1px solid transparent;
+    border-radius: inherit;
+    width: 100%;
+}  
+.search-bar input[type="search"]::placeholder {
+    color: #bbb;
+}
+.search-bar button[type="submit"] {
+    text-indent: -999px;
+    overflow: hidden;
+    width: 40px;
+    padding: 0;
+    margin: 0;
+    border: 1px solid transparent;
+    border-radius: inherit;
+    background: transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' class='bi bi-search' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'%3E%3C/path%3E%3C/svg%3E") no-repeat center;
+    cursor: pointer;
+    opacity: 0.7;
+}
+.search-bar button[type="submit"]:focus,
+input[type="search"]:focus {
+  box-shadow: 0 0 3px 0 #1183d6;
+  border-color: #1183d6;
+  outline: none;
+}
+  
+  button[type="submit"]:hover {
+    opacity: 1;
+  }
+
+.side-content h3{
+    text-align: start;
+}
+.position {
+    position: fixed;
+}
+.follow-list {
+    padding-right: 5px;
+    width: 270px;
+    max-height: 350px;
+    overflow-y: auto;
+}
+.follow-list::-webkit-scrollbar {
+    width: 5px;   
+}
+.follow-list::-webkit-scrollbar-track {
+    background-color: #fff;
+} 
+.follow-list::-webkit-scrollbar-thumb {
+    background-color: #333;
+}
+.follow{
+    display: flex;
+    align-items: center;
+    padding-bottom: 10px;
+    justify-content: space-between;
+}
+.follow span {
+    display: flex;
+    padding-left: 5px;
+
+}
+.follow div {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+.follow button {
+    border: none;
+    border-radius: 5px;
+}

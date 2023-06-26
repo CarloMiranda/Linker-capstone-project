@@ -1,0 +1,29 @@
+.container {
+    margin: auto;
+    width: 50%;
+    border: 1px solid #333;
+    border-radius: 20px;
+    box-shadow: 0px 10px 15px -15px #111;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    margin-top: 200px;
+
+}
+.main {
+    display: flex;
+}
+.logo {
+    width: 100%;
+    justify-content: center;
+}
+.logo1 img {
+    width: 100px;
+}
+.logo2 img {
+    width: 150px;
+    margin-top: 30px;
+}
+.login-form {
+    width: 100%;
+}

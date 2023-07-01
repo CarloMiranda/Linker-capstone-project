@@ -66,13 +66,17 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $avatar = $data['gender'] === 'female' ? 'female-avatar-profile-picture.png' : 'male-avatar-profile-picture.jpg';
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'gender' => $data['gender'],
-            'profile_picture' => $avatar,
         ]);
+
+        $user->profile_picture = $avatar;
+        $user->save();
 
         return $user;
     }

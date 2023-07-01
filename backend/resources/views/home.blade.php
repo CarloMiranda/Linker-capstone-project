@@ -147,7 +147,16 @@
                          @endif
                             <div class="post-row">
                             <div class="user-profile">
+                                
+                                @if ($user->profile_picture)
                                 <img src="{{ asset('storage/' . $twat->user->profile_picture) }}" alt="">
+                                @else
+                                @if ($user->gender === 'female')
+                                    <img src="{{ asset('images/female-avatar-profile-picture.png') }}" alt="Profile Picture">
+                                @else
+                                    <img src="{{ asset('images/male-avatar-profile-picture.jpg') }}" alt="Profile Picture">
+                                @endif
+                                @endif
                                 <div>
                                     <p><a href="{{ route('profile', $twat->user->id) }}" style="text-decoration:none">{{ $twat->user->name }}</a></p>
                                     <span>⏲ {{ $twat->created_at->diffForHumans() }}</span>

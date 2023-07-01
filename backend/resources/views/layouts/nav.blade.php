@@ -99,7 +99,7 @@
             </div>
             <div class="nav-user-icon">
                     @if ($user->profile_picture)
-                    <a href="{{ route('profile', Auth::user()->id) }}"><img src="{{ asset('storage/' . $user->profile_picture) }}"></a>
+                    <a href="{{ route('profile', Auth::user()->id) }}"></a>
                     @endif
             <div class="nav-user-icon"> 
                 @auth

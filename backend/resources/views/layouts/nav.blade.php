@@ -104,7 +104,16 @@
             <div class="nav-user-icon"> 
                 @auth
                     <div class="profile-menu" style="text-decoration:none">
-                        <img src="{{ asset('storage/' . $user->profile_picture) }}" onclick="settingsMenuToggle()" >
+                        
+                        @if ($user->profile_picture)
+                            <img src="{{ asset('storage/' . $user->profile_picture) }}" onclick="settingsMenuToggle()" >
+                        @else
+                        @if ($user->gender === 'female')
+                            <img src="{{ asset('images/female-avatar-profile-picture.png') }}" onclick="settingsMenuToggle()" alt="Profile Picture">
+                        @else
+                            <img src="{{ asset('images/male-avatar-profile-picture.jpg') }}" onclick="settingsMenuToggle()" alt="Profile Picture">
+                        @endif
+                        @endif
                     </div>
                     <div class="settings-menu">
                             <div class="top-menu shadow mx-3 mt-2">
@@ -112,7 +121,15 @@
                                     <span></span>
                                 </div>
                                 <div class="dropdown-item mt-2 top">
-                                    <img src="{{ asset('storage/' . $user->profile_picture) }}" >
+                                @if ($user->profile_picture)
+                                    <img src="{{ asset('storage/' . $user->profile_picture) }}" alt="Profile Picture">
+                                @else
+                                @if ($user->gender === 'female')
+                                    <img src="{{ asset('images/female-avatar-profile-picture.png') }}" alt="Profile Picture">
+                                @else
+                                    <img src="{{ asset('images/male-avatar-profile-picture.jpg') }}" alt="Profile Picture">
+                                @endif
+                                @endif
                                     <div class="ms-2 pt-2">
                                         <p>{{ Auth::user()->name }}</p>
                                         <a class="text-decoration-none" href="{{ route('profile', Auth::user()->id) }}">See your profile</a>

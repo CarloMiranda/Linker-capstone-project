@@ -57,6 +57,24 @@
                             </div>
                         </div>
 
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                <label for="gender" class="form-label">{{ __('Gender') }}</label>
+                                <select id="gender" class="form-control @error('gender') is-invalid @enderror" name="gender" required>
+                                    <option value="" selected disabled>Select gender</option>
+                                    <option value="male" {{ old('gender') == 'male' ? 'selected' : '' }}>Male</option>
+                                    <option value="female" {{ old('gender') == 'female' ? 'selected' : '' }}>Female</option>
+                                </select>
+
+                                @error('gender')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+
                         <div class="row mb-0">
                             <div class="col-md-12 mb-3">
                                 <button type="submit" class="btn btn-primary">
@@ -71,4 +89,24 @@
         </div>
     </div>
 </div>
+
+<script>
+    // Update profile picture based on selected gender
+    const genderMaleCheckbox = document.getElementById('genderMale');
+    const genderFemaleCheckbox = document.getElementById('genderFemale');
+    const profilePicture = document.getElementById('profilePicture');
+
+    genderMaleCheckbox.addEventListener('change', function() {
+        if (this.checked) {
+            profilePicture.src = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnaICsbsCV3xXHVLkcIbNF7N8BlzP6ZTjZWNcdquuXMZsDGHLNvlOfH2hTeJblYT3HexA&usqp=CAU';
+        }
+    });
+
+    genderFemaleCheckbox.addEventListener('change', function() {
+        if (this.checked) {
+            profilePicture.src = 'https://example.com/female-profile-picture.jpg';
+        }
+    });
+</script>
+
 @endsection

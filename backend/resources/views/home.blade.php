@@ -8,7 +8,17 @@
         <!-- left side bar  -->
         <div class="left-sidebar"> 
             <div class="imp-links">
-                <a href="{{ route('profile', Auth::user()->id) }}"><img src="{{ asset('storage/' . $user->profile_picture) }}" style="border-radius: 50%;" alt="">{{ Auth::user()->name }}</a>
+                <a href="{{ route('profile', Auth::user()->id) }}">
+                    @if ($user->profile_picture)
+                        <img src="{{ asset('storage/' . $user->profile_picture) }}" style="border-radius: 50%;" alt="Profile Picture">
+                    @else
+                    @if ($user->gender === 'female')
+                        <img src="{{ asset('images/female-avatar-profile-picture.png') }}" style="border-radius: 50%;" alt="Profile Picture">
+                    @else
+                        <img src="{{ asset('images/male-avatar-profile-picture.jpg') }}" style="border-radius: 50%;" alt="Profile Picture">
+                    @endif
+                    @endif
+                    {{ Auth::user()->name }}</a>
                 <a href="#"><img src="images/news.png"> Latest News</a>
                 <a href="#"><img src="images/friends.png"> Friends</a>
                 <a href="#"><img src="images/group.png"> Groups</a>
@@ -82,7 +92,15 @@
             <!-- Write Twat -->
             <div class="write-post-container shadow">
                 <div class="user-profile">
-                    <img src="{{ asset('storage/' . $user->profile_picture) }}" alt="">
+                @if ($user->profile_picture)
+                <img src="{{ asset('storage/' . $user->profile_picture) }}" alt="Profile Picture">
+                @else
+                @if ($user->gender === 'female')
+                    <img src="{{ asset('images/female-avatar-profile-picture.png') }}" alt="Profile Picture">
+                @else
+                    <img src="{{ asset('images/male-avatar-profile-picture.jpg') }}" alt="Profile Picture">
+                @endif
+                @endif
                     <div>
                     <p>
                     <span class="fw-bold">{{ Auth::user()->name }}</span>
@@ -129,7 +147,7 @@
                          @endif
                             <div class="post-row">
                             <div class="user-profile">
-                                <img src="images/profile-pic.png" alt="">
+                                <img src="{{ asset('storage/' . $twat->user->profile_picture) }}" alt="">
                                 <div>
                                     <p><a href="{{ route('profile', $twat->user->id) }}" style="text-decoration:none">{{ $twat->user->name }}</a></p>
                                     <span>⏲ {{ $twat->created_at->diffForHumans() }}</span>

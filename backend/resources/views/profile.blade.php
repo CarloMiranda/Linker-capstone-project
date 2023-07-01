@@ -28,7 +28,16 @@
         <img src="{{ asset('images/cover.png') }}" class="cover-img">
         <div class="profile-details">
             <div class="pd-left">
+            @if ($user->profile_picture)
                 <img src="{{ asset('storage/' . $user->profile_picture) }}" alt="Profile Picture" class="my-3" style="max-width: 200px; max-height: 200px;">
+            @else
+            @if ($user->gender === 'female')
+                <img src="{{ asset('images/female-avatar-profile-picture.png') }}" alt="Profile Picture" class="my-3" style="max-width: 200px; max-height: 200px;">
+            @else
+                <img src="{{ asset('images/male-avatar-profile-picture.jpg') }}" alt="Profile Picture" class="my-3" style="max-width: 200px; max-height: 200px;">
+            @endif
+            @endif
+
                 <div class="d-flex align-items-center">
                     <form action="{{ route('upload-profile-picture') }}" method="POST" enctype="multipart/form-data" class="ms-3">
                         @csrf

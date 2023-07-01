@@ -32,7 +32,7 @@ class TwatController extends Controller
         }
 
         $twat->save();
-        // return redirect()->route('home')->with('success', "New twat posted!");
+        return redirect()->route('home')->with('success', "New twat posted!");
     }
 
     public function delete($id){

@@ -97,6 +97,10 @@
                 <img src="{{ asset('images/search.png') }}">
                 <input type="text" placeholder="Search">
             </div>
+            <div class="nav-user-icon online">
+                    @if ($user->profile_picture)
+                    <a href="{{ route('profile', Auth::user()->id) }}"><img src="{{ asset('storage/' . $user->profile_picture) }}"></a>
+                    @endif
             <div class="nav-user-icon"> 
                 @auth
                     <div class="profile-menu" style="text-decoration:none"><img src="{{ asset('images/profile-pic.png') }}" onclick="settingsMenuToggle()" ></div>

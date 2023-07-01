@@ -26,15 +26,29 @@
     box-sizing: border-box;
 }
 
-body {
-    background: #efefef;
+:root{
+    --body-color: #efefef;
+    --nav-color: #1876f2;
+    --bg-color: #fff;
+}
+
+.dark-theme {
+    /* --body-color: #091321; */
+    --body-color: #142236;
+    --nav-color: #010c1a;
+    --bg-color: #010c1a;
+}
+
+#app {
+    background: var(--body-color);
+    transition: background 0.3s;
 }
 
 nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: #1876f2;
+    background: var(--nav-color);
     padding: 5px 5%;
     top: 0;
     z-index: 100;
@@ -132,7 +146,7 @@ nav {
     padding: 20px;
     border-radius: 4px;
     color: #626262;
-    background: #fff;
+    background: var(--bg-color);
 }   
 
 .main-content {
@@ -331,7 +345,7 @@ nav {
 
 .write-post-container {
     width: 100%;
-    background: #fff;
+    background: var(--bg-color);
     border-radius: 6px;
     padding: 20px;
     color: #626262;
@@ -386,13 +400,26 @@ nav {
     font-size: 13px;
 }
 
+.add-post-links {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    color: #626262;
+    margin-right: 30px;
+    font-size: 13px;
+}
+
 .add-post-links img {
+    width: 20px;
+}
+
+.add-post-links label img {
     width: 20px;
 }
 
 .post-container {
     width: 100%;
-    background: #efefef;
+    background: var(--bg-color);
     padding: 20px;
     color: #626262;
     margin: 20px 0;
@@ -472,13 +499,13 @@ nav {
     border-radius: 4px;
 }
 .reactions-container {
-            display: none;
-            z-index: 999;
-        }
-        
-        .show-reactions .reactions-container {
-            display: flex;
-        } 
+    display: none;
+    z-index: 999;
+}
+
+.show-reactions .reactions-container {
+    display: flex;
+} 
 
     </style>
 
@@ -494,7 +521,7 @@ nav {
 <body>
     <div id="app">
         @include('layouts.nav')
-        <main class="py-4">
+        <main class="">
             @yield('content')
         </main>
         @include('layouts.footer')
@@ -503,6 +530,18 @@ nav {
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
     </script>
     <script src="{{ asset('js/main.js') }}"></script>
+    <script>
+        let settingsMenu = document.querySelector('.settings-menu');
+        let darkBtn = document.querySelector('#dark-btn');
+      
+        function settingsMenuToggle(){
+            settingsMenu.classList.toggle("settings-menu-height");
+        }
+        darkBtn.onclick = function(){
+            darkBtn.classList.toggle("dark-btn-on");
+            document.body.classList.toggle("dark-theme");
+    }
+    </script>
 </body>
 
 </html>

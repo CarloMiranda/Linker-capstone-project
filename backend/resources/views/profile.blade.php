@@ -2,8 +2,45 @@
 
 @section('title', 'Profile')
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
+<style>
+    .profile-container {
+        padding: 20px 15%;
+        color: #626262
+    }
+
+    .cover-img {
+        width: 100%;
+        border-radius: 4px;
+        margin-bottom: 15px;
+    }
+
+    .profile-details {
+        background: #fff;
+        padding: 20px;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+</style>
+<div class="profile-container">
+    <div class="row">
+        <img src="{{ asset('images/cover.png') }}" class="cover-img">
+        <div class="profile-details">
+            <div class="pd-left">
+                <img src="{{ asset('images/profile.png') }}" alt="">
+                <div>
+                    <h3>{{ Auth::user()->name }}</h3>
+                    <p>120 Friends - 20 mutual</p>
+                </div>
+            </div>
+            <div class="pd-right"></div>
+        </div>
+
+
+
+
+
         <div class="col-md-12">
             <div class="card p-4">
                 <h1 class="fw-bold">{{ $user->name }}</h1>

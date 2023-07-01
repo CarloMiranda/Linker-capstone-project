@@ -1,6 +1,91 @@
-<nav class="">
+
+<style>
+    .logout, .profile-menu {
+        cursor: pointer;
+    }
+
+    .nav-user-icon ul {
+        border: none;
+    }
+
+    .dropdown-item {
+       display: flex;
+    }
+
+    .dropdown-item img {
+        height: 50%;
+    }
+    .dropdown-item div p {
+        margin-bottom: -6px !important;
+        color: #626262;
+    }
+    .dropdown-item div a {
+        font-size: 13px;
+    }
+    .settings-link a {
+        display: flex;
+        flex: 1;
+        justify-content: space-between;
+        color: #626262;
+    }
+
+    #dark-btn {
+        position: absolute;
+        top: 30px;
+        right: 36px;
+        background: #ccc;
+        width: 45px;
+        border-radius: 15px;
+        padding: 2px 3px;
+        cursor: pointer;
+        display: flex;
+        transition: padding-left 0.5s, background 0.5s;
+    }
+
+    #dark-btn span {
+        width: 18px;
+        height: 18px;
+        background: #fff;
+        border-radius: 50%;
+        display: inline-block;
+    }
+    #dark-btn.dark-btn-on{
+        padding-left: 23px;
+        background: #1e1d1d;
+        color: #fff
+    }
+
+    .settings-menu {
+        position: absolute;
+        width: 90%;
+        max-width: 350px;
+        background: var(--bg-color);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+        border-radius: 4px;
+        overflow: hidden;
+        right: 5%;
+        top: 75px;
+        max-height: 0;
+        transition: max-height 0.3s;
+    }
+
+    .settings-menu-height {
+        max-height: 480px;
+    }
+
+    .top-menu {
+        padding: 15px;
+    }
+
+    .bottom-menu {
+        padding: 15px;
+    }
+    
+</style>
+
+<nav class=""> 
         <div class="nav-left">
-            <img src="{{ asset('images/linkr_logo1.png') }}" class="logo">
+            <a href="{{ route('home') }}"><img src="{{ asset('images/linkr_logo1.png') }}" class="logo"></a>
             <ul>
                 <li><img src="{{ asset('images/notification.png') }}"></li>
                 <li><img src="{{ asset('images/inbox.png') }}"></li>
@@ -13,16 +98,60 @@
                 <img src="{{ asset('images/search.png') }}">
                 <input type="text" placeholder="Search">
             </div>
-            <div class="nav-user-icon online">
+            <div class="nav-user-icon"> 
                 @auth
-                    <a href="{{ route('profile', Auth::user()->id) }}"><img src="{{ asset('images/profile-pic.png') }}"></a>
+                    <div class="profile-menu" style="text-decoration:none"><img src="{{ asset('images/profile-pic.png') }}" onclick="settingsMenuToggle()" ></div>
+                    <div class="settings-menu">
+                            <div class="top-menu shadow mx-3 mt-2">
+                                <div id="dark-btn">
+                                    <span></span>
+                                </div>
+                                <div class="dropdown-item mt-2 top">
+                                    <img src="{{ asset('images/profile-pic.png') }}" >
+                                    <div class="ms-2 pt-2">
+                                        <p>{{ Auth::user()->name }}</p>
+                                        <a class="text-decoration-none" href="{{ route('profile', Auth::user()->id) }}">See your profile</a>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="dropdown-item mt-2 bot">
+                                    <img src="{{ asset('images/feedback.png') }}" alt="">
+                                    <div class="ms-2 pt-2">
+                                        <p>Give Feedback</p>
+                                         <a class="text-decoration-none" href="#">Help us to improve the new design</a>
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <div class="bottom-menu my-2 mt-2">
+                                <div class="dropdown-item settings-link">
+                                    <img src="{{ asset('images/setting.png') }}" class="setting-icon">
+                                    <a href="#" class="text-decoration-none ms-2 my-auto">Setting & Privacy <i class="fa-solid fa-angle-right"></i></a>
+                                </div>
+                                 
+                                <div class="dropdown-item mt-2 settings-link">
+                                    <img src="{{ asset('images/help.png') }}" class="setting-icon">
+                                    <a href="#" class="text-decoration-none ms-2 my-auto">Help & Support <i class="fa-solid fa-angle-right"></i></a>
+                                </div>
+                                 
+                                <div class="dropdown-item mt-2 settings-link">
+                                    <img src="{{ asset('images/display.png') }}" class="setting-icon">
+                                    <a href="#" class="text-decoration-none ms-2 my-auto">Display & Accessibility <i class="fa-solid fa-angle-right"></i></a>
+                                </div>
+                                
+                                <div class="dropdown-item mt-2">
+                                    <img src="{{ asset('images/logout.png') }}" class="setting-icon">
+                                    <a onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                                            class="text-decoration-none ms-2 my-auto logout">Logout</a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                            @csrf
+                                        </form>
+                                 </div>
+                            </div>
+                        </div>
+                 
                 @endauth
             </div>
-
-            <button onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                    class="btn btn-light btn-sm mt-2 ms-2">Logout</button>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                    @csrf
-                </form>
         </div>
     </nav>
+    

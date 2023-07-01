@@ -3,8 +3,11 @@
 @section('content')
 @section('title', 'Register')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
+    <div class="row justify-content-around">
+        <div class="col-md-6 my-auto">
+            <img src="https://www.mnhealthnetwork.com/images/landing/people-2.png" class="img-fluid" alt="">
+         </div>
+        <div class="col-md-6">
             <h1 class="fw-bold text-white">Create an account</h1>
             <p class="text-white">You're almost there!</p>
             <div class="card">
@@ -55,11 +58,12 @@
                         </div>
 
                         <div class="row mb-0">
-                            <div class="col-md-12">
+                            <div class="col-md-12 mb-5">
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Register') }}
                                 </button>
                             </div>
+                            <small><a href="{{ route('login') }}"> Already have account?</a></small>
                         </div>
                     </form>
                 </div>

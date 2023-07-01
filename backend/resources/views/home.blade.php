@@ -95,9 +95,11 @@
                             <div class="col-md-10 mt-3" id="imageArea">
                                 <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                                 <input class="form-control" placeholder="Say anything you want..." type="text" name="content">
-                                <div class="add-post-links">
-                                <input class="form-control d-none" type="file" name="image" id="image" accept=".gif,.jpg,.jpeg,.png" onchange="imageUpload(event);">
-                                <label for="image" style="cursor: pointer;" id="imageUploadLabel"><img src="images/photo.png" alt=""> Photo/Video</label>
+                                <div class="add-post-links d-flex justify-content-between">
+                                    <a href=""><img src="images/live-video.png" alt=""> Live Video</a>
+                                    <input class="form-control d-none" type="file" name="image" id="image" accept=".gif,.jpg,.jpeg,.png" onchange="imageUpload(event);">
+                                    <label for="image" style="cursor: pointer;" id="imageUploadLabel"><img src="images/photo.png" alt=""> Photo/Video</label>
+                                    <a href=""><img src="images/feeling.png" alt=""> Feeling/Activity</a>
                                 </div>
                             </div>
                             <div class="col-md-2 mt-3">
@@ -116,7 +118,7 @@
                                 <ul class="dropdown-menu floate-end">
                                     <li><a class="dropdown-item" href="{{ route('deletetwat', $twat->id) }}">Delete</a></li>
                                 </ul>
-                                @endif
+                         @endif
                             <div class="post-row">
                             <div class="user-profile">
                                 <img src="images/profile-pic.png" alt="">

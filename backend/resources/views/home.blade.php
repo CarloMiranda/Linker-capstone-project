@@ -6,9 +6,7 @@
         <!-- left side bar  -->
         <div class="left-sidebar"> 
             <div class="imp-links">
-                @if ($user->profile_picture)
                 <a href="{{ route('profile', Auth::user()->id) }}"><img src="{{ asset('storage/' . $user->profile_picture) }}" style="border-radius: 50%;" alt="">{{ Auth::user()->name }}</a>
-                @endif
                 <a href="#"><img src="images/news.png"> Latest News</a>
                 <a href="#"><img src="images/friends.png"> Friends</a>
                 <a href="#"><img src="images/group.png"> Groups</a>
@@ -82,9 +80,7 @@
             <!-- Write Twat -->
             <div class="write-post-container shadow">
                 <div class="user-profile">
-                    @if ($user->profile_picture)
                     <img src="{{ asset('storage/' . $user->profile_picture) }}" alt="">
-                    @endif
                     <div>
                     <p>
                     <span class="fw-bold">{{ Auth::user()->name }}</span>
@@ -99,11 +95,17 @@
                             <div class="col-md-10 mt-3" id="imageArea">
                                 <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                                 <input class="form-control" placeholder="Say anything you want..." type="text" name="content">
-                                <div class="add-post-links d-flex justify-content-between">
-                                    <a href=""><img src="images/live-video.png" alt=""> Live Video</a>
-                                    <input class="form-control d-none" type="file" name="image" id="image" accept=".gif,.jpg,.jpeg,.png" onchange="imageUpload(event);">
-                                    <label for="image" style="cursor: pointer;" id="imageUploadLabel"><img src="images/photo.png" alt=""> Photo/Video</label>
-                                    <a href=""><img src="images/feeling.png" alt=""> Feeling/Activity</a>
+                                <div class="row add-post-links mt-3">
+                                    <div class="col-md-4">
+                                        <a href=""><img src="images/live-video.png" alt=""> Live Video</a>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input class="form-control d-none" type="file" name="image" id="image" accept=".gif,.jpg,.jpeg,.png" onchange="imageUpload(event);">
+                                        <label for="image" style="cursor: pointer;" id="imageUploadLabel"><img src="images/photo.png" alt=""> Photo/Video</label>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <a href=""><img src="images/feeling.png" alt=""> Feeling/Activity</a>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-2 mt-3">

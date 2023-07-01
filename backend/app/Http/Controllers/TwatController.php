@@ -48,5 +48,5 @@ class TwatController extends Controller
         }else{
             return redirect()->route('home');
         }
-    }
+    }       
 }

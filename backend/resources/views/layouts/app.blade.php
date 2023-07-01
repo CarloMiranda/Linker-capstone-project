@@ -84,7 +84,7 @@ nav {
 }
 
 .nav-user-icon {
-    margin-left: 30px;
+    margin-left: 10px;
 }
 
 .search-box {

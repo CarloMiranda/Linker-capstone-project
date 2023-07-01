@@ -51,7 +51,7 @@
     }
     #dark-btn.dark-btn-on{
         padding-left: 23px;
-        background: #0a0a0a;
+        background: #091528;
     }
 
     .settings-menu {
@@ -97,7 +97,7 @@
                 <img src="{{ asset('images/search.png') }}">
                 <input type="text" placeholder="Search">
             </div>
-            <div class="nav-user-icon online">
+            <div class="nav-user-icon">
                     @if ($user->profile_picture)
                     <a href="{{ route('profile', Auth::user()->id) }}"><img src="{{ asset('storage/' . $user->profile_picture) }}"></a>
                     @endif

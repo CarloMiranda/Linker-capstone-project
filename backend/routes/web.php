@@ -110,7 +110,7 @@ Route::get('/sendemail', function(){
     // Domain Name
     $mg->messages()->send(config('MAIL_DOMAIN'), [
         'from'    => 'postmaster@sandboxa34cd7f4af3b484d92f163a835fdc4c1.mailgun.org',
-        'to'      => 'b.lim@pocketdevs.ph',
+        'to'      => 'WD63@mail.com',
         'subject' => $subject,
         'text'    => $text
       ]);

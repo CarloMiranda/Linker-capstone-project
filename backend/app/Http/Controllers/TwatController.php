@@ -32,7 +32,7 @@ class TwatController extends Controller
         }
 
         $twat->save();
-        return redirect()->route('home')->with('success', "New twat posted!");
+        // return redirect()->route('home')->with('success', "New twat posted!");
     }
 
     public function delete($id){
@@ -44,7 +44,7 @@ class TwatController extends Controller
 
         if(Auth::user()->id == $twat->user->id){
             $twat->delete();
-            return redirect()->route('home')->with('success', "Twat deleted!");
+            // return redirect()->route('home')->with('success', " deleted!");
         }else{
             return redirect()->route('home');
         }

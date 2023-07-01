@@ -2,7 +2,9 @@
 
 @section('title', 'Home')
 @section('content')
-<main class="container">
+<main>
+    <div class="container">
+        <div class="row">
         <!-- left side bar  -->
         <div class="left-sidebar"> 
             <div class="imp-links">
@@ -237,7 +239,7 @@
 
             <div class="event">
                 <div class="left-event">
-                    <h3>18</h3>
+                    <h6>18</h6>
                     <span>June</span>
                 </div>
                 <div class="right-event">
@@ -249,7 +251,7 @@
 
             <div class="event">
                 <div class="left-event">
-                    <h3>22</h3>
+                    <h6>22</h6>
                     <span>July</span>
                 </div>
                 <div class="right-event">
@@ -288,9 +290,9 @@
                 </div>
                 <p>Jillian Ward</p>
             </div>
-
-
+         </div>
         </div>
+    </div>
 </main>
     <script>
         var hideTimer;

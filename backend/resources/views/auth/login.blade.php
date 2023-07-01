@@ -11,8 +11,8 @@
 
         <h1 class="fw-bold mt-5">Share your moments, and make friends </h1>
             <p>With Linkr, everyone can be connected.</p>
-            <div class="card">
-                <div class="card-body">
+            <div class="card border-0">
+                <div class="card-body my-3">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 

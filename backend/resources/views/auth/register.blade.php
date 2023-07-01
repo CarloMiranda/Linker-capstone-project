@@ -4,10 +4,10 @@
 @section('title', 'Register')
 <div class="container">
     <div class="row justify-content-around">
-        <div class="col-md-6 my-auto">
+        <div class="col-md-6">
             <img src="https://www.mnhealthnetwork.com/images/landing/people-2.png" class="img-fluid" alt="">
          </div>
-        <div class="col-md-6">
+        <div class="col-md-6 mt-5">
             <h1 class="fw-bold text-white">Create an account</h1>
             <p class="text-white">You're almost there!</p>
             <div class="card">
@@ -15,7 +15,7 @@
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
-                        <div class="row mb-3">
+                        <div class="row my-3">
                             <div class="col-md-12">
                                 <input placeholder="Name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
@@ -58,12 +58,12 @@
                         </div>
 
                         <div class="row mb-0">
-                            <div class="col-md-12 mb-5">
+                            <div class="col-md-12 mb-3">
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Register') }}
                                 </button>
                             </div>
-                            <small><a href="{{ route('login') }}"> Already have account?</a></small>
+                            {{-- <small><a href="{{ route('login') }}"> Already have account?</a></small> --}}
                         </div>
                     </form>
                 </div>

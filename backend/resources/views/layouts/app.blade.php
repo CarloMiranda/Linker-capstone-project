@@ -34,7 +34,7 @@
 
 .dark-theme {
     /* --body-color: #091321; */
-    --body-color: #142236;
+    --body-color: #040f1e;
     --nav-color: #010c1a;
     --bg-color: #010c1a;
 }
@@ -298,7 +298,16 @@ nav {
     position: absolute;
     width: 45px;
     border-radius: 50%;
-    top: 10px;
+    top: 10px !important;
+    left: 10px;
+    border: 3px solid #1876f2;
+}
+
+.story1 img {
+    position: absolute;
+    width: 45px;
+    border-radius: 50%;
+    top: 80px !important;
     left: 10px;
     border: 3px solid #1876f2;
 }
@@ -313,25 +322,24 @@ nav {
 }
 
 .story1 {
-    background-image: linear-gradient(transparent, rgba(0,0,0,0.5)), url(/capstone-project/frontend/images/status-1.png);
+    background-image: linear-gradient(transparent, rgba(0,0,0,0.5)), url({{ asset('images/status-1.png') }});
 }
 
 
 .story2 {
-    background-image: linear-gradient(transparent, rgba(0,0,0,0.5)), url(/capstone-project/frontend/images/status-2.png);
+    background-image: linear-gradient(transparent, rgba(0,0,0,0.5)), url({{ asset('images/status-2.png') }});
 }
 
 .story3 {
-    background-image: linear-gradient(transparent, rgba(0,0,0,0.5)), url(/capstone-project/frontend/images/status-3.png);
+    background-image: linear-gradient(transparent, rgba(0,0,0,0.5)), url({{ asset('images/status-3.png') }});
 }
 
-
 .story4 {
-    background-image: linear-gradient(transparent, rgba(0,0,0,0.5)), url(/capstone-project/frontend/images/status-4.png);
+    background-image: linear-gradient(transparent, rgba(0,0,0,0.5)), url({{ asset('images/status-4.png') }});
 }
 
 .story5 {
-    background-image: linear-gradient(transparent, rgba(0,0,0,0.5)), url(/capstone-project/frontend/images/status-5.png);
+    background-image: linear-gradient(transparent, rgba(0,0,0,0.5)), url({{ asset('images/status-5.png') }});
 }
 
 .story1 img{
@@ -521,10 +529,10 @@ nav {
 <body>
     <div id="app">
         @include('layouts.nav')
-        <main class="">
+        <main>
             @yield('content')
         </main>
-        @include('layouts.footer')
+        {{-- @include('layouts.footer') --}}
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">

@@ -51,8 +51,7 @@
     }
     #dark-btn.dark-btn-on{
         padding-left: 23px;
-        background: #1e1d1d;
-        color: #fff
+        background: #0a0a0a;
     }
 
     .settings-menu {

@@ -67,14 +67,19 @@ nav {
 }
 
 .nav-left ul li {
-    list-style: none;
     display: inline-block;
-    margin-top: 10px;
+    margin-top: 15px;
+    border-radius: 5px;
 }
 
-.nav-left ul li img {
-    width: 28px;
+.nav-left ul li ion-icon {
+    font-size: 25px;
+    color: #fff;
     margin: 0 15px;
+}
+
+.nav-left ul li:hover {
+    background: #999
 }
 
 .nav-user-icon img {
@@ -304,12 +309,7 @@ nav {
 }
 
 .story1 img {
-    position: absolute;
-    width: 45px;
-    border-radius: 50%;
-    top: 80px !important;
-    left: 10px;
-    border: 3px solid #1876f2;
+    margin-top: 50%;
 }
 
 .story p{
@@ -322,7 +322,15 @@ nav {
 }
 
 .story1 {
-    background-image: linear-gradient(transparent, rgba(0,0,0,0.5)), url({{ asset('images/status-1.png') }});
+    @if ($user->profile_picture)
+        background-image: linear-gradient(transparent, rgba(0,0,0,0.5)), url({{ asset('storage/' . $user->profile_picture) }});
+    @else
+        @if ($user->gender === 'female')
+            background-image: linear-gradient(transparent, rgba(0,0,0,0.5)), url({{ asset('images/female-avatar-profile-picture.png') }});
+        @else
+            background-image: linear-gradient(transparent, rgba(0,0,0,0.5)), url({{ asset('images/male-avatar-profile-picture.jpg') }});
+        @endif
+    @endif
 }
 
 

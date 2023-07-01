@@ -10,30 +10,33 @@ use Auth;
 
 class TwatController extends Controller
 {
-    public function create(Request $request){
+    public function create(Request $request)
+    {
+        $request->validate([
+            'content' => 'nullable',
+            'image' => 'required|image|mimes:jpeg,jpg,png,gif|max:2048',
+        ]);
+
         $twat = new Twat;
-        $twat->content = $request->content;
+        $twat->content = $request->input('content', '');
         $twat->user_id = $request->user_id;
 
-        if($request->hasFile('image')){
-            $request->validate([
-                'image' => 'required|image|mimes:jpeg,jpg,png,gif|max:2048',
-            ]);
-
+        if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $name = time().".".$image->getClientOriginalExtension();
-            
+            $name = time() . "." . $image->getClientOriginalExtension();
+
             // Save image in storage
             Storage::putFileAs('public/images', $image, $name);
 
             $twat->image_path = $name;
-        }else{
-            $twat->image_path = null;
+        } else {
+            return redirect()->route('home')->withErrors(['image' => 'Please select an image to upload.']);
         }
 
         $twat->save();
-        return redirect()->route('home')->with('success', "New twat posted!");
+        return redirect()->route('home')->with('success', 'Post created successfully.');
     }
+
 
     public function delete($id){
         $twat = Twat::find($id);

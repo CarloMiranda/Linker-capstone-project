@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('twats', function (Blueprint $table) {
             $table->id();
-            $table->string('content');
+            $table->string('content')->nullable();
             $table->string('image_path')->nullable()->default(null);
             $table->timestamps();
 

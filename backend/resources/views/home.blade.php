@@ -6,7 +6,9 @@
         <!-- left side bar  -->
         <div class="left-sidebar"> 
             <div class="imp-links">
-                <a href="{{ route('profile', Auth::user()->id) }}"><img src="{{ asset('images/profile-pic.png') }}" style="border-radius: 50%;" alt="">{{ Auth::user()->name }}</a>
+                @if ($user->profile_picture)
+                <a href="{{ route('profile', Auth::user()->id) }}"><img src="{{ asset('storage/' . $user->profile_picture) }}" style="border-radius: 50%;" alt="">{{ Auth::user()->name }}</a>
+                @endif
                 <a href="#"><img src="images/news.png"> Latest News</a>
                 <a href="#"><img src="images/friends.png"> Friends</a>
                 <a href="#"><img src="images/group.png"> Groups</a>
@@ -80,7 +82,9 @@
             <!-- Write Twat -->
             <div class="write-post-container shadow">
                 <div class="user-profile">
-                    <img src="{{ asset('images/profile-pic.png') }}" alt="">
+                    @if ($user->profile_picture)
+                    <img src="{{ asset('storage/' . $user->profile_picture) }}" alt="">
+                    @endif
                     <div>
                     <p>
                     <span class="fw-bold">{{ Auth::user()->name }}</span>

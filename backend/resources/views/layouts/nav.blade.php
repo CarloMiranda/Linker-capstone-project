@@ -86,10 +86,22 @@
         <div class="nav-left">
             <a href="{{ route('home') }}"><img src="{{ asset('images/linkr_logo1.png') }}" class="logo"></a>
             <ul>
-                <li><img src="{{ asset('images/notification.png') }}"></li>
-                <li><img src="{{ asset('images/inbox.png') }}"></li>
-                <li><img src="{{ asset('images/video.png') }}"></li>
+                <li>
+                    <a href="{{ route('home') }}" class="{{ Request::is('/') ? 'active' : '' }}" acive>
+                        <ion-icon name="{{ Request::is('home') ? 'home' : 'home-outline' }}"></ion-icon>
+                    </a>
+                </li>
+                <li>
+                    <ion-icon name="{{ Request::is('notifications') ? 'notifications' : 'notifications-outline' }}"></ion-icon>
+                </li>
+                <li>
+                    <ion-icon name="{{ Request::is('mail') ? 'mail' : 'mail-outline' }}"></ion-icon>
+                </li>
+                <li>
+                    <ion-icon name="{{ Request::is('play') ? 'play-circle' : 'play-circle-outline' }}"></ion-icon>
+                </li>
             </ul>
+
         </div>
         <div class="nav-right">
 
@@ -97,10 +109,6 @@
                 <img src="{{ asset('images/search.png') }}">
                 <input type="text" placeholder="Search">
             </div>
-            <div class="nav-user-icon">
-                    @if ($user->profile_picture)
-                    <a href="{{ route('profile', Auth::user()->id) }}"></a>
-                    @endif
             <div class="nav-user-icon"> 
                 @auth
                     <div class="profile-menu" style="text-decoration:none">
@@ -176,4 +184,6 @@
             </div>
         </div>
     </nav>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     

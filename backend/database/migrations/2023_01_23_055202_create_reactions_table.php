@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('reactions', function (Blueprint $table) {
             $table->id();
 
-            $table->enum('reaction', ['like', 'heart', 'laugh', 'angry', 'dislike']);
+            $table->enum('reaction', ['like', 'heart', 'laugh', 'angry', 'dislike'])->nullable();
 
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

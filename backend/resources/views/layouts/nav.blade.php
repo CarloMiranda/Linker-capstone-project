@@ -103,14 +103,16 @@
                     @endif
             <div class="nav-user-icon"> 
                 @auth
-                    <div class="profile-menu" style="text-decoration:none"><img src="{{ asset('images/profile-pic.png') }}" onclick="settingsMenuToggle()" ></div>
+                    <div class="profile-menu" style="text-decoration:none">
+                        <img src="{{ asset('storage/' . $user->profile_picture) }}" onclick="settingsMenuToggle()" >
+                    </div>
                     <div class="settings-menu">
                             <div class="top-menu shadow mx-3 mt-2">
                                 <div id="dark-btn">
                                     <span></span>
                                 </div>
                                 <div class="dropdown-item mt-2 top">
-                                    <img src="{{ asset('images/profile-pic.png') }}" >
+                                    <img src="{{ asset('storage/' . $user->profile_picture) }}" >
                                     <div class="ms-2 pt-2">
                                         <p>{{ Auth::user()->name }}</p>
                                         <a class="text-decoration-none" href="{{ route('profile', Auth::user()->id) }}">See your profile</a>

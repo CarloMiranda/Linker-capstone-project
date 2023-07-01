@@ -1,6 +1,7 @@
-@extends('layouts.app')
+@extends('layouts.log')
 
 @section('content')
+@section('title', 'Login')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-6 my-auto">
@@ -8,8 +9,8 @@
         </div>
         <div class="col-md-6 my-auto bg-white px-5 rounded-3">
 
-        <h1 class="fw-bold mt-5">Make friends, not enemies.</h1>
-            <p>With Twatter, connect with people you don't know and read their twats. It's free (for now).</p>
+        <h1 class="fw-bold mt-5">Share your moments, and make friends </h1>
+            <p>With Linkr, everyone can be connected.</p>
             <div class="card">
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
@@ -51,13 +52,13 @@
                         </div>
 
                         <div class="row mb-0">
-                            <div class="col-md-12">
+                            <div class="col-md-12 mb-5">
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Login') }}
                                 </button>
                                 &nbsp;
-                                <small><a href="{{ route('register') }}"> No account? Click here.</a></small>
                             </div>
+                            <small><a href="{{ route('register') }}"> No account? Click here.</a></small>
                         </div>
                     </form>
                 </div>

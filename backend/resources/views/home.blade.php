@@ -301,7 +301,7 @@
         function startHideTimer(button) {
             hideTimer = setTimeout(function() {
                 button.parentNode.classList.remove('show-reactions');
-            }, 3000);
+            }, 2000);
         }
         
         function setReaction(reaction) {

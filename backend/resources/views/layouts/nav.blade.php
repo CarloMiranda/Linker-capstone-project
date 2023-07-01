@@ -14,9 +14,9 @@
                 <input type="text" placeholder="Search">
             </div>
             <div class="nav-user-icon online">
-                @auth
-                    <a href="{{ route('profile', Auth::user()->id) }}"><img src="{{ asset('images/profile-pic.png') }}"></a>
-                @endauth
+                    @if ($user->profile_picture)
+                    <a href="{{ route('profile', Auth::user()->id) }}"><img src="{{ asset('storage/' . $user->profile_picture) }}"></a>
+                    @endif
             </div>
 
             <button onclick="event.preventDefault(); document.getElementById('logout-form').submit();"

@@ -6,7 +6,18 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card p-4">
-                <h1 class="fw-bold">{{ $user->name }}</h1>
+                <div class="d-flex align-items-center">
+                    <h1 class="fw-bold">{{ $user->name }}</h1>
+                    <form action="{{ route('upload-profile-picture') }}" method="POST" enctype="multipart/form-data" class="ms-3">
+                        @csrf
+                        <input type="file" name="profile_picture">
+                        <button type="submit" class="btn btn-primary">Upload</button>
+                    </form>
+                </div>
+                
+                @if ($user->profile_picture)
+                <img src="{{ asset('storage/' . $user->profile_picture) }}" alt="Profile Picture" class="my-3" style="max-width: 200px; max-height: 200px;">
+                @endif
                 <p>
                     {{ $user->email }}
                     <br>
@@ -35,6 +46,9 @@
                             </p>
                             <small class="text-muted float-end">{{ $twat->created_at->diffForHumans() }}</small>
                         </div>
+                        @if($twat->image_path != NULL)
+                            <img src="{{ Storage::url('images/'.$twat->image_path) }}" class="img-fluid">
+                        @endif
                     </div>
                     @endforeach
                 </p>

@@ -5,6 +5,7 @@ use App\Http\Controllers\TwatController;
 use App\Http\Controllers\ReplyController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ReactionController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -43,6 +44,7 @@ Route::get('/reaction/{id}', [ReactionController::class, 'delete'])->name('react
 Route::post('/createreply', [ReplyController::class, 'create'])->name('createreply');
 Route::get('/deletereply/{id}', [ReplyController::class, 'delete'])->name('deletereply');
 
+Route::post('/upload-profile-picture', [UserController::class, 'uploadProfilePicture'])->name('upload-profile-picture');
 
 // --- Admin Routes --- //
 Route::get('/admin', function () {

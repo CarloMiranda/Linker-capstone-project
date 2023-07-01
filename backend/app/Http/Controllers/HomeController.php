@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Twat;
 use App\Models\User;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -25,7 +26,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home')->with('twats', Twat::orderBy('created_at', 'desc')->paginate(6));
+        $user = Auth::user(); // Retrieve the authenticated user
+        $twats = Twat::orderBy('created_at', 'desc')->paginate(6); // Retrieve the twats
+    
+        return view('home', compact('user', 'twats'));
     }
 
     public function profile($id)

@@ -96,7 +96,7 @@
                         <div class="row">
                             <div class="col-md-10 mt-3" id="imageArea">
                                 <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
-                                <input class="form-control" placeholder="Say anything you want..." type="text" name="content">
+                                <input class="form-control" placeholder="Write something..." type="text" name="content">
                                 <div class="row add-post-links mt-3">
                                     <div class="col-md-4">
                                         <a href=""><img src="images/live-video.png" alt=""> Live Video</a>

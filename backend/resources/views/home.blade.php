@@ -136,34 +136,31 @@
                         </div>
                 </form>
             </div>
-                    <!-- Twat Area -->
+                    <!-- Post Area -->
                     @foreach($twats as $twat)
-                        <div class="post-container">
+                    <div class="post-container">
                         @if($twat->user_id == Auth::user()->id)
-                                <a href="#" class="float-end dropdown-toggle" style="text-decoration:none" data-bs-toggle="dropdown"></a>
-                                <ul class="dropdown-menu floate-end">
+                                <a href="#" class="float-end text-secondary" style="text-decoration:none" data-bs-toggle="dropdown"><i class="fas fa-ellipsis-v"></i></a>
+                                <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="{{ route('deletetwat', $twat->id) }}">Delete</a></li>
                                 </ul>
                          @endif
                             <div class="post-row">
-                            <div class="user-profile">
-                                
-                            @if ($twat->user->profile_picture)
-                    <img src="{{ asset('storage/' . $twat->user->profile_picture) }}" alt="Profile Picture">
-                @else
-                    @if ($twat->user->gender === 'female')
-                        <img src="{{ asset('images/female-avatar-profile-picture.png') }}" alt="Profile Picture">
-                    @else
-                        <img src="{{ asset('images/male-avatar-profile-picture.jpg') }}" alt="Profile Picture">
-                    @endif
-                @endif
-                                <div>
-                                    <p><a href="{{ route('profile', $twat->user->id) }}" style="text-decoration:none">{{ $twat->user->name }}</a></p>
-                                    <span>⏲ {{ $twat->created_at->diffForHumans() }}</span>
+                                <div class="user-profile">
+                                    @if ($twat->user->profile_picture)
+                                    <img src="{{ asset('storage/' . $twat->user->profile_picture) }}" alt="Profile Picture">
+                                    @else
+                                    @if ($twat->user->gender === 'female')
+                                    <img src="{{ asset('images/female-avatar-profile-picture.png') }}" alt="Profile Picture">
+                                    @else
+                                    <img src="{{ asset('images/male-avatar-profile-picture.jpg') }}" alt="Profile Picture">
+                                    @endif
+                                    @endif
+                                    <div>
+                                        <p><a href="{{ route('profile', $twat->user->id) }}" style="text-decoration:none">{{ $twat->user->name }}</a></p>
+                                        <span>{{ $twat->created_at->diffForHumans() }}</span>
+                                     </div>
                                 </div>
-                                
-                                
-                            </div>
                             </div>
                             <p class="post-text">
                                 {{ $twat->content }}
@@ -256,11 +253,11 @@
                                 <input type="hidden" name="twat_id" value="{{ $twat->id }}">
                                 <button type="submit" class="d-none"></button>
                             </form>
-                        </div>
-                    @endforeach
+                          </div>
+                              @endforeach
 
-                    {{ $twats->links() }}
-    </div>
+                      {{ $twats->links() }}
+                    </div>
 
         <!-- right sidebar  -->
         <div class="right-sidebar">

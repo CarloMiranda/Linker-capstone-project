@@ -282,13 +282,13 @@
             <img src="{{ asset('storage/' . $user->wallpaper_picture) }}" class="cover-img">
             
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-outline-secondary" style="position: relative; bottom: 45px; left: 73rem;" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            <button type="button" class="btn btn-outline-secondary" style="position: relative; bottom: 45px; left: 73rem;" data-bs-toggle="modal" data-bs-target="#cover_modal">
                 <i class="fa-solid fa-camera"></i><span> Add Cover Photo</span>
             </button>
             
             <!-- Modal -->
-            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog">
+            <div class="modal fade" id="cover_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content" style="background: var(--bg-color);">
                     <div class="modal-header">
                     <h1 class="modal-title fs-5" id="staticBackdropLabel">Add Cover Photo</h1>
@@ -321,13 +321,13 @@
                 @endif
                 
                 @if (Auth::check() && $user->id === Auth::user()->id)
-                <button type="button" class="profile-btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                <button type="button" class="profile-btn" data-bs-toggle="modal" data-bs-target="#profile_modal">
                     <i class="fa-solid fa-camera"></i>
                 </button>
                 @endif
                 
                 <!-- Modal -->
-                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal fade" id="profile_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" >
                     <div class="modal-content" style="background: var(--bg-color);">
                         <div class="modal-header">

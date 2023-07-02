@@ -84,6 +84,7 @@ nav {
 
 .nav-user-icon img {
     width: 48px;
+    height: 48px;
     border-radius: 50%;
     padding-top: 2px;
 }
@@ -179,7 +180,8 @@ nav {
 }
 
 .imp-links a img{
-    width: 25px;
+    width: 40px;
+    height: 40px;
     margin-right: 15px;
 }
 
@@ -386,6 +388,7 @@ nav {
 
 .user-profile img{
     width: 45px;
+    height: 45px;
     border-radius: 50%;
     margin-right: 10px;
 }
@@ -540,6 +543,31 @@ nav {
     display: flex;
 } 
 
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-toggle {
+    color: #333;
+    text-decoration: none;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    list-style: none;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.dropdown-menu li:hover {
+    background-color: #f5f5f5;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
 /* For Mobile Phones Portrait or Landscape View */
 @media screen
     and (max-device-width: 640px) {
@@ -562,6 +590,7 @@ nav {
     }
     .nav-profile img {
     width: 30px;
+    height: 30px;
     position: absolute;
     right: 2%;
     top: 50%;
@@ -666,6 +695,40 @@ nav {
     #user-profile{
     display: none;
     }
+    .dropdown {
+    position: relative;
+    display: inline-block;
+    }
+
+    .dropdown-toggle {
+    color: #333;
+    text-decoration: none;
+    }
+
+    .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    .dropdown-menu li {
+    padding: 10px;
+}
+
+    .dropdown-menu li:hover {
+    background-color: #f5f5f5;
+    }
+
+    .dropdown:hover .dropdown-menu {
+    display: block;
+    }
 }
 
     </style>
@@ -674,6 +737,8 @@ nav {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <!-- Datatable -->
     <link href="https://cdn.jsdelivr.net/npm/vanilla-datatables@latest/dist/vanilla-dataTables.min.css" rel="stylesheet" type="text/css">
     <script src="https://cdn.jsdelivr.net/npm/vanilla-datatables@latest/dist/vanilla-dataTables.min.js" type="text/javascript"></script>

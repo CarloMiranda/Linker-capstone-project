@@ -17,7 +17,7 @@ class ReplyController extends Controller
 
         $reply->save();
 
-        return redirect()->back()->with('success', 'Reply posted!#reply-' . $reply->id);
+        return redirect()->back()->with('success', 'Reply posted!');
     }
 
     public function delete($id)

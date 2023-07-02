@@ -13,7 +13,8 @@
     }
 
     .dropdown-item img {
-        height: 50%;
+        width: 45px;
+        height: 45px;
     }
     .dropdown-item div p {
         margin-bottom: -6px !important;
@@ -110,17 +111,16 @@
             </div>
             <div class="nav-user-icon"> 
                 @auth
-                    <div class="nav-profile" style="text-decoration:none">
-                        
-                        @if ($user->profile_picture)
-                            <img src="{{ asset('storage/' . $user->profile_picture) }}" onclick="settingsMenuToggle()" >
-                        @else
+                    <div class="nav-profile" style="text-decoration:none">  
+                    @if ($user->profile_picture)
+                        <img src="{{ asset('storage/' . ($user->id === Auth::id() ? $user->profile_picture : Auth::user()->profile_picture)) }}" onclick="settingsMenuToggle()">
+                    @else
                         @if ($user->gender === 'female')
                             <img src="{{ asset('images/female-avatar-profile-picture.png') }}" onclick="settingsMenuToggle()" alt="Profile Picture">
                         @else
                             <img src="{{ asset('images/male-avatar-profile-picture.jpg') }}" onclick="settingsMenuToggle()" alt="Profile Picture">
                         @endif
-                        @endif
+                    @endif
                     </div>
                     <div class="settings-menu">
                             <div class="top-menu shadow mx-3 mt-2">
@@ -128,15 +128,17 @@
                                     <span></span>
                                 </div>
                                 <div class="dropdown-item mt-2 top">
+                                <a href="{{ route('profile', Auth::user()->id) }}">  
                                 @if ($user->profile_picture)
-                                    <img src="{{ asset('storage/' . $user->profile_picture) }}" alt="Profile Picture">
+                                    <img src="{{ asset('storage/' . ($user->id === Auth::id() ? $user->profile_picture : Auth::user()->profile_picture)) }}" onclick="settingsMenuToggle()">
                                 @else
-                                @if ($user->gender === 'female')
-                                    <img src="{{ asset('images/female-avatar-profile-picture.png') }}" alt="Profile Picture">
-                                @else
-                                    <img src="{{ asset('images/male-avatar-profile-picture.jpg') }}" alt="Profile Picture">
+                                    @if ($user->gender === 'female')
+                                        <img src="{{ asset('images/female-avatar-profile-picture.png') }}" onclick="settingsMenuToggle()" alt="Profile Picture">
+                                    @else
+                                        <img src="{{ asset('images/male-avatar-profile-picture.jpg') }}" onclick="settingsMenuToggle()" alt="Profile Picture">
+                                    @endif
                                 @endif
-                                @endif
+                                </a>
                                     <div class="ms-2 pt-2">
                                         <p>{{ Auth::user()->name }}</p>
                                         <a class="text-decoration-none" href="{{ route('profile', Auth::user()->id) }}">See your profile</a>

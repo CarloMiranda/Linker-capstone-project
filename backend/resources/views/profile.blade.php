@@ -34,6 +34,7 @@
         border-radius: 6px;
         position: absolute;
         overflow: hidden;
+        object-fit: cover;
     }
 
     .profile-btn {
@@ -287,10 +288,12 @@
                     <img src="{{ asset('images/male-avatar-profile-picture.jpg') }}" alt="Profile Picture" class="pd-image" style="max-width: 200px; max-height: 200px;">
                 @endif
                 @endif
-              
+                
+                @if (Auth::check() && $user->id === Auth::user()->id)
                 <button type="button" class="profile-btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                     <i class="fa-solid fa-camera"></i>
                 </button>
+                @endif
                 
                 <!-- Modal -->
                 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -304,6 +307,7 @@
                             <div class="d-flex align-items-center">
                                 <form action="{{ route('upload-profile-picture') }}" method="POST" enctype="multipart/form-data" class="ms-3">
                                     @csrf
+                                    
                                     <input type="file" name="profile_picture">
                                     <button type="submit" class="btn btn-primary">Upload</button>
                                 </form>
@@ -316,8 +320,11 @@
                     </div>
                     </div>
                 </div>
-                    <div style="margin-left: 90px;">
-                        <h3>{{ Auth::user()->name }}</h3>
+                
+                    <div style="margin-left: 130px;">
+                    @if ($user->twats()->count() > 0)
+                        <h3>{{ $user->twats()->orderByDesc('created_at')->first()->user->name }}</h3>
+                    @endif
                         <p>120 Friends - 20 mutual</p>
                         <img src="{{ asset('images/member-1.png') }}">
                         <img src="{{ asset('images/member-2.png') }}">
@@ -325,6 +332,7 @@
                         <img src="{{ asset('images/member-4.png') }}">
                     </div>
                 </div>
+                
 {{--         
                 <div class="d-flex align-items-center">
                     <form action="{{ route('upload-profile-picture') }}" method="POST" enctype="multipart/form-data" class="ms-3">
@@ -335,8 +343,6 @@
                 </div>
 
                 <div>
-                    
-                    
                     {{ $user->email }}
                     <br>
                     <span class="mb-3 badge text-bg-primary">Joined on {{ date_format($user->created_at, "F j q, Y") }}</span>
@@ -406,53 +412,59 @@
                     </div>
                 </div>
             </div>
-            <div class="post-col">
-                <div class="write-post-container shadow"> 
-                    <div class="user-profile">
-                    @if ($user->profile_picture)
+            
+    <div class="post-col">
+        @if (Auth::check() && $user->id === Auth::user()->id)
+        <div class="write-post-container shadow"> 
+            <div class="user-profile">
+                @if ($user->profile_picture)
                     <img src="{{ asset('storage/' . $user->profile_picture) }}" alt="Profile Picture">
-                    @else
+                @else
                     @if ($user->gender === 'female')
                         <img src="{{ asset('images/female-avatar-profile-picture.png') }}" alt="Profile Picture">
                     @else
                         <img src="{{ asset('images/male-avatar-profile-picture.jpg') }}" alt="Profile Picture">
                     @endif
-                    @endif
-                        <div>
-                        <p>
+                @endif
+                <div>
+                    <p>
                         <span class="fw-bold">{{ Auth::user()->name }}</span>
-                        </p>
-                            <small>Public <i class="fa-solid fa-caret-down"></i></small>
+                    </p>
+                    <small>Public <i class="fa-solid fa-caret-down"></i></small>
+                </div>
+            </div>
+    
+            <form action="{{ route('createtwat') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="row">
+                    <div class="col-md-10 mt-3" id="imageArea">
+                        <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                        <input class="form-control" placeholder="What's on your mind, {{ Auth::user()->name }}?" type="text" name="content">
+                        <div class="row add-post-links mt-3">
+                            <div class="col-md-4">
+                                <a href=""><img src="{{ asset('images/live-video.png') }}" alt=""> Live Video</a>
+                            </div>
+                            <div class="col-md-4">
+                                <input class="form-control d-none" type="file" name="image" id="image" accept=".gif,.jpg,.jpeg,.png" onchange="imageUpload(event);">
+                                <label for="image" style="cursor: pointer;" id="imageUploadLabel"><img src="{{ asset('images/photo.png') }}" alt=""> Photo/Video</label>
+                            </div>
+                            <div class="col-md-4">
+                                <a href=""><img src="{{ asset('images/feeling.png') }}" alt=""> Feeling/Activity</a>
+                            </div>
                         </div>
                     </div>
-        
-                    <form action="{{ route('createtwat') }}" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        <div class="row">
-                            <div class="col-md-10 mt-3" id="imageArea">
-                                <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
-                                <input class="form-control" placeholder="What's on your mind, {{ Auth::user()->name }}?" type="text" name="content">
-                                <div class="row add-post-links mt-3">
-                                    <div class="col-md-4">
-                                        <a href=""><img src="{{ asset('images/live-video.png') }}" alt=""> Live Video</a>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <input class="form-control d-none" type="file" name="image" id="image" accept=".gif,.jpg,.jpeg,.png" onchange="imageUpload(event);">
-                                        <label for="image" style="cursor: pointer;" id="imageUploadLabel"><img src="{{ asset('images/photo.png') }}" alt=""> Photo/Video</label>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <a href=""><img src="{{ asset('images/feeling.png') }}" alt=""> Feeling/Activity</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-2 mt-3">
-                                <button type="submit" class="btn btn-primary ms-2">
-                                    Post
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                    <div class="col-md-2 mt-3">
+                        <button type="submit" class="btn btn-primary ms-2">
+                            Post
+                        </button>
+                    </div>
                 </div>
+            </form>
+        </div>
+        @endif
+
+
+
 
                 <!-- User posted -->
                 @foreach($user->twats()->orderByDesc('created_at')->get() as $twat)
@@ -474,10 +486,14 @@
                             </div>
                         </div>
                         @if($twat->user_id == Auth::user()->id)
-                        <a href="#" class="float-end text-secondary" style="text-decoration:none" data-bs-toggle="dropdown"><i class="fas fa-ellipsis-v"></i></a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{ route('deletetwat', $twat->id) }}">Delete</a></li>
-                        </ul>
+                        <div class="dropdown float-end">
+                            <a href="#" class=" text-secondary" style="text-decoration:none" data-bs-toggle="dropdown"><i class="fas fa-ellipsis-v"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{{ route('deletetwat', $twat->id) }}">Delete</a></li>
+                                <li><a class="dropdown-item" href="{{ route('deletetwat', $twat->id) }}">Hide post</a></li>
+                                <li><a class="dropdown-item" href="#">Edit</a></li>
+                            </ul>
+                        </div>
                             @endif
                     </div>
                             <p class="post-text">
@@ -555,10 +571,13 @@
                                         <div>
                                             <span class="text-muted"><small>⏲ {{ $reply->created_at->diffForHumans() }}</small></span>
                                             @if($reply->user->id == Auth::user()->id)
-                                            <a href="#" class="dropdown-toggle" style="text-decoration:none" data-bs-toggle="dropdown"></a>
-                                            <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item" href="{{ route('deletereply', $reply->id) }}">Delete</a></li>
-                                            </ul>
+                                            <div class="dropdown mx-3 float-end">
+                                                <a href="#" class=" text-secondary" style="text-decoration:none" data-bs-toggle="dropdown"><i class="fas fa-ellipsis-v"></i></a>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" href="{{ route('deletereply', $reply->id) }}">Delete</a></li>
+                                                    <li><a class="dropdown-item" href="#">Edit</a></li>
+                                                </ul>
+                                            </div>
                                             @endif
                                         </div>
                                     </div>
@@ -569,7 +588,7 @@
 
                         <form action="{{ route('createreply') }}" method="POST" class="mt-2">
                         @csrf
-                        <input type="text" class="form-control" placeholder="💬 Add a reply..." name="content" required>
+                        <input type="text" class="form-control" placeholder="💬 Add a comment..." name="content" required>
                         <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                         <input type="hidden" name="twat_id" value="{{ $twat->id }}">
                         <button type="submit" class="d-none"></button>

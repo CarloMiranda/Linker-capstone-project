@@ -34,9 +34,9 @@
 
 .dark-theme {
     /* --body-color: #091321; */
-    --body-color: #040f1e;
-    --nav-color: #010c1a;
-    --bg-color: #010c1a;
+    --body-color: #000000;
+    --nav-color: #0d0d0d;
+    --bg-color: #242526;
 }
 
 #app {

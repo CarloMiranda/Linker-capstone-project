@@ -123,7 +123,12 @@ nav {
   background-color:transparent;
   color: #333;
 }
-
+.input-search::placeholder{
+color: #333;
+font-size: 12px;
+letter-spacing: 2px;
+font-weight: 500;
+}
 
 .online {
     position: relative;
@@ -620,7 +625,7 @@ nav {
     color: #333;
     font-size: 12px;
     letter-spacing: 2px;
-    font-weight: 100;
+    font-weight: 500;
     }
     .btn-search{
     width: 30px;

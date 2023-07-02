@@ -14,7 +14,7 @@ class TwatController extends Controller
     {
         $request->validate([
             'content' => 'nullable',
-            'image' => 'required|image|mimes:jpeg,jpg,png,gif|max:2048',
+            'image' => 'image|mimes:jpeg,jpg,png,gif|max:2048',
         ]);
 
         $twat = new Twat;
@@ -29,12 +29,10 @@ class TwatController extends Controller
             Storage::putFileAs('public/images', $image, $name);
 
             $twat->image_path = $name;
-        } else {
-            return redirect()->route('home')->withErrors(['image' => 'Please select an image to upload.']);
         }
 
         $twat->save();
-        return redirect()->back()->with('success', 'Post created successfully.');
+        // return redirect()->back()->with('success', 'Post created successfully.');
     }
 
 
@@ -47,9 +45,8 @@ class TwatController extends Controller
 
         if(Auth::user()->id == $twat->user->id){
             $twat->delete();
-            return redirect()->route('home')->with('success', " deleted!");
-        }else{
-            return redirect()->route('home');
+            // return redirect()->route('home')->with('success', " deleted!");
+        
         }
     }       
 }

@@ -84,6 +84,7 @@ nav {
 
 .nav-user-icon img {
     width: 48px;
+    height: 48px;
     border-radius: 50%;
     padding-top: 2px;
 }
@@ -92,26 +93,37 @@ nav {
     margin-left: 10px;
 }
 
-.search-box {
-    background: #efefef;
-    width: 350px;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    padding: 0 15px;
+.search-box{
+  width: fit-content;
+  height: fit-content;
+  position: relative;
+}
+.input-search{
+  border-style: none;
+  padding: 10px;
+  font-size: 15px;
+  letter-spacing: 2px;
+  outline: none;
+  border-radius: 25px;
+  background-color: #fff;
+  padding-right: 40px;
+  color:#333;
 }
 
-.search-box img {
-    width: 18px;
+.btn-search{
+  width: 40px;
+  height: 40px;
+  border-style: none;
+  font-size: 18px;
+  font-weight: bold;
+  outline: none;
+  border-radius: 50%;
+  position: absolute;
+  right: 0px;
+  background-color:transparent;
+  color: #333;
 }
 
-.search-box input {
-    width: 100%;
-    background: transparent;
-    padding: 10px;
-    outline: none;
-    border: 0;
-}
 
 .online {
     position: relative;
@@ -168,7 +180,8 @@ nav {
 }
 
 .imp-links a img{
-    width: 25px;
+    width: 40px;
+    height: 40px;
     margin-right: 15px;
 }
 
@@ -231,7 +244,8 @@ nav {
     text-align: center;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    background: var(--body-color);
 }
 
 .event p {
@@ -374,6 +388,7 @@ nav {
 
 .user-profile img{
     width: 45px;
+    height: 45px;
     border-radius: 50%;
     margin-right: 10px;
 }
@@ -401,10 +416,16 @@ nav {
     background: transparent;
     resize: none;
 }
-
+.input-post {
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: space-between;
+}
 .add-post-links {
     display: flex;
     margin-top: 10px;
+    justify-content: space-between;
 }
 
 .add-post-links a {
@@ -412,7 +433,6 @@ nav {
     display: flex;
     align-items: center;
     color: #626262;
-    margin-right: 30px;
     font-size: 13px;
 }
 
@@ -523,15 +543,207 @@ nav {
     display: flex;
 } 
 
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-toggle {
+    color: #333;
+    text-decoration: none;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    list-style: none;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.dropdown-menu li:hover {
+    background-color: #f5f5f5;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+/* For Mobile Phones Portrait or Landscape View */
+@media screen
+    and (max-device-width: 640px) {
+    nav {
+        display: grid;
+    }
+    .logo {
+    width: 100px;
+    margin-right: 10px;
+    }
+    .nav-left {
+    display: inline-block;
+    }
+    .nav-left ul {
+    position: relative;
+    left: 15%;
+    }
+    .nav-right {
+    justify-content: end;
+    }
+    .nav-profile img {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    right: 2%;
+    top: 50%;
+    }
+    .search-box{
+    width: fit-content;
+    height: fit-content;
+    position: relative;
+    right: 2%;
+    top: 8%;
+    position: absolute;
+    }
+    .input-search{
+    height: 30px;
+    width: 30px;
+    border-style: none;
+    padding: 10px;
+    font-size: 12px;
+    outline: none;
+    border-radius: 25px;
+    transition: all .5s ease-in-out;
+    background-color: #fff;
+    padding-right: 20px;
+    color:#333;
+    }
+    .input-search::placeholder{
+    color: #333;
+    font-size: 12px;
+    letter-spacing: 2px;
+    font-weight: 100;
+    }
+    .btn-search{
+    width: 30px;
+    height: 30px;
+    border-style: none;
+    font-size: 12px;
+    font-weight: bold;
+    outline: none;
+    cursor: pointer;
+    border-radius: 50%;
+    position: absolute;
+    right: 0px;
+    color:#333 ;
+    background-color:transparent;
+    pointer-events: painted;  
+    }
+    .btn-search:focus ~ .input-search{
+    width: 200px;
+    border-radius: 50px;
+    background-color: #fff;
+    border-bottom:1px solid rgba(255,255,255,.5);
+    transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
+    }
+    .input-search:focus{
+    width: 250px;
+    border-radius: 50px;
+    background-color: #fff;
+    border-bottom:1px solid rgba(255,255,255,.5);
+    transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
+    }
+    .left-sidebar {
+    display: none;
+    } 
+    .right-sidebar {
+    display: none;
+    } 
+    .main-content {
+    flex-basis:  100%;
+    }
+    .story img{
+    position: absolute;
+    width: 20px;
+    border-radius: 50%;
+    top: 10px !important;
+    left: 10px;
+    border: 1px solid #1876f2;
+    }
+    .story p {
+    font-size: 9px;
+    }
+    .story1 img {
+    margin-top: 50%;
+    left: 50%;
+    }
+    .add-post-links {
+    display: flex;
+    margin-top: 10px;
+    font-size: 9px;
+    }
+    .col img, label img {
+    width: 15px;
+    }
+    .col label img {
+    width: 15px;
+    }
+    .add-post-links a {
+    font-size: 9px;
+    }
+    .user-profile img {
+    width: 25px;
+    }
+    #user-profile{
+    display: none;
+    }
+    .dropdown {
+    position: relative;
+    display: inline-block;
+    }
+
+    .dropdown-toggle {
+    color: #333;
+    text-decoration: none;
+    }
+
+    .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    .dropdown-menu li {
+    padding: 10px;
+}
+
+    .dropdown-menu li:hover {
+    background-color: #f5f5f5;
+    }
+
+    .dropdown:hover .dropdown-menu {
+    display: block;
+    }
+}
+
     </style>
 
     <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <!-- Datatable -->
     <link href="https://cdn.jsdelivr.net/npm/vanilla-datatables@latest/dist/vanilla-dataTables.min.css" rel="stylesheet" type="text/css">
     <script src="https://cdn.jsdelivr.net/npm/vanilla-datatables@latest/dist/vanilla-dataTables.min.js" type="text/javascript"></script>
     <script src="https://kit.fontawesome.com/904fa8d934.js" crossorigin="anonymous"></script>
+    {{-- <link rel="stylesheet" href="{{ asset('ijaboCropTool/ijaboCropTool.min.css') }}"> --}}
 </head>
 
 <body>
@@ -579,6 +791,8 @@ nav {
     }
 
     </script>
-</body>
+    {{-- <script src="{{ asset('ijaboCropTool/ijaboCropTool.min.js') }}"></script> --}}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+</body> 
 
 </html>

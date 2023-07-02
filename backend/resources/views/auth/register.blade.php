@@ -5,7 +5,7 @@
 <div class="container">
     <div class="row justify-content-around">
         <div class="col-md-6">
-            <img src="https://www.mnhealthnetwork.com/images/landing/people-2.png" class="img-fluid" alt="">
+            <img src="images/Register.png" class="img-fluid" alt="">
          </div>
         <div class="col-md-6 mt-5">
             <h1 class="fw-bold text-white">Create an account</h1>

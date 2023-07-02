@@ -69,7 +69,7 @@
             @endif
             <!-- Write Twat -->
             <div class="write-post-container shadow">
-                <div class="user-profile">
+                <div class="user-profile" id="user-profile">
                     @if ($user->profile_picture)
                     <img src="{{ asset('storage/' . $user->profile_picture) }}" alt="Profile Picture">
                     @else
@@ -90,26 +90,26 @@
                 <form action="{{ route('createtwat') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                         <div class="row">
-                            <div class="col-md-10 mt-3" id="imageArea">
-                                <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
-                                <input class="form-control" placeholder="What's on your mind, {{ Auth::user()->name }}?" type="text" name="content">
+                            <div class="mt-3" id="imageArea">
+                                <div class="input-post">
+                                    <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                                    <input class="form-control" placeholder="What's on your mind, {{ Auth::user()->name }}?" type="text" name="content">
+                                        <button type="submit" class="btn btn-primary ms-2">
+                                            Post
+                                        </button>
+                                </div>
                                 <div class="row add-post-links mt-3">
-                                    <div class="col-md-4">
-                                        <a href=""><img src="images/live-video.png" alt=""> Live Video</a>
+                                    <div class="col">
+                                        <a href=""><img src="images/live-video.png" alt=""> LiveVideo</a>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col">
                                         <input class="form-control d-none" type="file" name="image" id="image" accept=".gif,.jpg,.jpeg,.png" onchange="imageUpload(event);">
                                         <label for="image" style="cursor: pointer;" id="imageUploadLabel"><img src="images/photo.png" alt=""> Photo/Video</label>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col">
                                         <a href=""><img src="images/feeling.png" alt=""> Feeling/Activity</a>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-2 mt-3">
-                                <button type="submit" class="btn btn-primary ms-2">
-                                    Post
-                                </button>
                             </div>
                         </div>
                 </form>

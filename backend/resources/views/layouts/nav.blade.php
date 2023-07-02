@@ -101,17 +101,16 @@
                     <ion-icon title="Videos" name="{{ Request::is('play') ? 'play-circle' : 'play-circle-outline' }}"></ion-icon>
                 </li>
             </ul>
-
         </div>
         <div class="nav-right">
 
             <div class="search-box">
-                <img src="{{ asset('images/search.png') }}">
-                <input type="text" placeholder="Search">
+                <button class="btn-search"><i class="fas fa-search"></i></button>
+                <input type="text" class="input-search" placeholder="Type to Search...">
             </div>
             <div class="nav-user-icon"> 
                 @auth
-                    <div class="profile-menu" style="text-decoration:none">
+                    <div class="nav-profile" style="text-decoration:none">
                         
                         @if ($user->profile_picture)
                             <img src="{{ asset('storage/' . $user->profile_picture) }}" onclick="settingsMenuToggle()" >

@@ -92,26 +92,37 @@ nav {
     margin-left: 10px;
 }
 
-.search-box {
-    background: #efefef;
-    width: 350px;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    padding: 0 15px;
+.search-box{
+  width: fit-content;
+  height: fit-content;
+  position: relative;
+}
+.input-search{
+  border-style: none;
+  padding: 10px;
+  font-size: 15px;
+  letter-spacing: 2px;
+  outline: none;
+  border-radius: 25px;
+  background-color: #fff;
+  padding-right: 40px;
+  color:#333;
 }
 
-.search-box img {
-    width: 18px;
+.btn-search{
+  width: 40px;
+  height: 40px;
+  border-style: none;
+  font-size: 18px;
+  font-weight: bold;
+  outline: none;
+  border-radius: 50%;
+  position: absolute;
+  right: 0px;
+  background-color:transparent;
+  color: #333;
 }
 
-.search-box input {
-    width: 100%;
-    background: transparent;
-    padding: 10px;
-    outline: none;
-    border: 0;
-}
 
 .online {
     position: relative;
@@ -401,10 +412,16 @@ nav {
     background: transparent;
     resize: none;
 }
-
+.input-post {
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: space-between;
+}
 .add-post-links {
     display: flex;
     margin-top: 10px;
+    justify-content: space-between;
 }
 
 .add-post-links a {
@@ -412,7 +429,6 @@ nav {
     display: flex;
     align-items: center;
     color: #626262;
-    margin-right: 30px;
     font-size: 13px;
 }
 
@@ -522,6 +538,134 @@ nav {
 .show-reactions .reactions-container {
     display: flex;
 } 
+
+/* For Mobile Phones Portrait or Landscape View */
+@media screen
+    and (max-device-width: 640px) {
+    nav {
+        display: grid;
+    }
+    .logo {
+    width: 100px;
+    margin-right: 10px;
+    }
+    .nav-left {
+    display: inline-block;
+    }
+    .nav-left ul {
+    position: relative;
+    left: 15%;
+    }
+    .nav-right {
+    justify-content: end;
+    }
+    .nav-profile img {
+    width: 30px;
+    position: absolute;
+    right: 2%;
+    top: 50%;
+    }
+    .search-box{
+    width: fit-content;
+    height: fit-content;
+    position: relative;
+    right: 2%;
+    top: 8%;
+    position: absolute;
+    }
+    .input-search{
+    height: 30px;
+    width: 30px;
+    border-style: none;
+    padding: 10px;
+    font-size: 12px;
+    outline: none;
+    border-radius: 25px;
+    transition: all .5s ease-in-out;
+    background-color: #fff;
+    padding-right: 20px;
+    color:#333;
+    }
+    .input-search::placeholder{
+    color: #333;
+    font-size: 12px;
+    letter-spacing: 2px;
+    font-weight: 100;
+    }
+    .btn-search{
+    width: 30px;
+    height: 30px;
+    border-style: none;
+    font-size: 12px;
+    font-weight: bold;
+    outline: none;
+    cursor: pointer;
+    border-radius: 50%;
+    position: absolute;
+    right: 0px;
+    color:#333 ;
+    background-color:transparent;
+    pointer-events: painted;  
+    }
+    .btn-search:focus ~ .input-search{
+    width: 200px;
+    border-radius: 50px;
+    background-color: #fff;
+    border-bottom:1px solid rgba(255,255,255,.5);
+    transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
+    }
+    .input-search:focus{
+    width: 250px;
+    border-radius: 50px;
+    background-color: #fff;
+    border-bottom:1px solid rgba(255,255,255,.5);
+    transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
+    }
+    .left-sidebar {
+    display: none;
+    } 
+    .right-sidebar {
+    display: none;
+    } 
+    .main-content {
+    flex-basis:  100%;
+    }
+    .story img{
+    position: absolute;
+    width: 20px;
+    border-radius: 50%;
+    top: 10px !important;
+    left: 10px;
+    border: 1px solid #1876f2;
+    }
+    .story p {
+    font-size: 9px;
+    }
+    .story1 img {
+    margin-top: 50%;
+    left: 50%;
+    }
+    .add-post-links {
+    display: flex;
+    margin-top: 10px;
+    font-size: 9px;
+    }
+    .col img, label img {
+    width: 15px;
+    }
+    .col label img {
+    width: 15px;
+    }
+    .add-post-links a {
+    font-size: 9px;
+    }
+    .user-profile img {
+    width: 25px;
+    }
+    #user-profile{
+    display: none;
+    }
+}
 
     </style>
 

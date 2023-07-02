@@ -45,7 +45,7 @@ class TwatController extends Controller
 
         if(Auth::user()->id == $twat->user->id){
             $twat->delete();
-            return redirect()->route('home')->with('success', " deleted!");
+            return redirect()->back()->with('success', " deleted!");
         
         }
     }       

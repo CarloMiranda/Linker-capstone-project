@@ -11,12 +11,10 @@
                 <a href="{{ route('profile', Auth::user()->id) }}">
                     @if ($user->profile_picture)
                         <img src="{{ asset('storage/' . $user->profile_picture) }}" style="border-radius: 50%;" alt="Profile Picture">
-                    @else
-                    @if ($user->gender === 'female')
+                    @elseif ($user->gender === 'female')
                         <img src="{{ asset('images/female-avatar-profile-picture.png') }}" style="border-radius: 50%;" alt="Profile Picture">
                     @else
                         <img src="{{ asset('images/male-avatar-profile-picture.jpg') }}" style="border-radius: 50%;" alt="Profile Picture">
-                    @endif
                     @endif
                     {{ Auth::user()->name }}</a>
                 <a href="#"><img src="images/news.png"> Latest News</a>

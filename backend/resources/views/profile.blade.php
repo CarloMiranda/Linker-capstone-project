@@ -280,13 +280,11 @@
             <div class="pd-left">
                 <div class="pd-row">
                 @if ($user->profile_picture)
-                    <img src="{{ asset('storage/' . $user->profile_picture) }}" alt="Profile Picture" class="pd-image" style="max-width: 200px; max-height: 200px;">
+                    <img src="{{ asset('storage/' . $user->profile_picture) }}" alt="Profile Picture" class="pd-image">
+                @elseif ($user->gender === 'female')
+                     <img src="{{ asset('images/female-avatar-profile-picture.png') }}" alt="Profile Picture" class="pd-image">
                 @else
-                @if ($user->gender === 'female')
-                     <img src="{{ asset('images/female-avatar-profile-picture.png') }}" alt="Profile Picture" class="pd-image" style="max-width: 200px; max-height: 200px;">
-                @else
-                    <img src="{{ asset('images/male-avatar-profile-picture.jpg') }}" alt="Profile Picture" class="pd-image" style="max-width: 200px; max-height: 200px;">
-                @endif
+                    <img src="{{ asset('images/male-avatar-profile-picture.jpg') }}" alt="Profile Picture" class="pd-image">
                 @endif
                 
                 @if (Auth::check() && $user->id === Auth::user()->id)
@@ -324,6 +322,8 @@
                     <div style="margin-left: 130px;">
                     @if ($user->twats()->count() > 0)
                         <h3>{{ $user->twats()->orderByDesc('created_at')->first()->user->name }}</h3>
+                        @else
+                        <h3>{{ Auth::user()->name }}</h3>
                     @endif
                         <p>120 Friends - 20 mutual</p>
                         <img src="{{ asset('images/member-1.png') }}">

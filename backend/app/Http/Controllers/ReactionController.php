@@ -14,7 +14,7 @@ class ReactionController extends Controller
         // Prevent creating multiple reaction by user
         $reaction = Reaction::where(['user_id' => Auth::user()->id, 'twat_id' => $request->twat_id])->first();
         if ($reaction != null) {
-            return redirect()->route('home')->with('success', "Multiple reaction is not allowed");
+            return redirect()->back()->with('success', "Multiple reaction is not allowed");
         }
         // Create reaction
         $newReaction = new Reaction;
@@ -22,6 +22,6 @@ class ReactionController extends Controller
         $newReaction->user_id = Auth::user()->id;
         $newReaction->twat_id = $request->twat_id;
         $newReaction->save();
-        return redirect()->route('home')->with('success', "Reaction added!");
+        return redirect()->back()->with('success', "Reaction added!");
     }
 }

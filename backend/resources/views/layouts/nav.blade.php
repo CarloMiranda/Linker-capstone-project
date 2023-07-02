@@ -88,17 +88,17 @@
             <ul>
                 <li>
                     <a href="{{ route('home') }}" class="{{ Request::is('/') ? 'active' : '' }}" acive>
-                        <ion-icon name="{{ Request::is('home') ? 'home' : 'home-outline' }}"></ion-icon>
+                        <ion-icon title="Home" name="{{ Request::is('home') ? 'home' : 'home-outline' }}"></ion-icon>
                     </a>
                 </li>
                 <li>
-                    <ion-icon name="{{ Request::is('notifications') ? 'notifications' : 'notifications-outline' }}"></ion-icon>
+                    <ion-icon title="Notifications" name="{{ Request::is('notifications') ? 'notifications' : 'notifications-outline' }}"></ion-icon>
                 </li>
                 <li>
-                    <ion-icon name="{{ Request::is('mail') ? 'mail' : 'mail-outline' }}"></ion-icon>
+                    <ion-icon title="Messages" name="{{ Request::is('mail') ? 'mail' : 'mail-outline' }}"></ion-icon>
                 </li>
                 <li>
-                    <ion-icon name="{{ Request::is('play') ? 'play-circle' : 'play-circle-outline' }}"></ion-icon>
+                    <ion-icon title="Videos" name="{{ Request::is('play') ? 'play-circle' : 'play-circle-outline' }}"></ion-icon>
                 </li>
             </ul>
 

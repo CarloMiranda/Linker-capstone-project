@@ -34,28 +34,6 @@
                 <a href="#"><img src="images/shortcut-4.png" alt="">Website Experts</a>
             </div>
         </div>
-    <!-- <div class="row justify-content-center">
-        Profile Section
-        <div class="col-md-3">
-            <div class="card p-3">
-                <h4>Profile</h4>
-                <p>
-                    <span class="fw-bold">{{ Auth::user()->name }}</span>
-                    <br>
-                    <small>{{ Auth::user()->email }}</small>
-                </p>
-                <a href="{{ route('profile', Auth::user()->id) }}" class="btn btn-primary btn-sm">My Profile</a>
-                @if(Auth::user()->type == 'admin')
-                <a href="{{ route('admin') }}" class="btn btn-dark btn-sm mt-2">Admin Dashboard</a>
-                @endif
-                <hr>
-                <button onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                    class="btn btn-light btn-sm">← Logout</button>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                    @csrf
-                </form>
-            </div>
-        </div> -->
 
     <!-- main content  -->
     <div class="main-content">
@@ -92,19 +70,19 @@
             <!-- Write Twat -->
             <div class="write-post-container shadow">
                 <div class="user-profile">
-                @if ($user->profile_picture)
-                <img src="{{ asset('storage/' . $user->profile_picture) }}" alt="Profile Picture">
-                @else
-                @if ($user->gender === 'female')
-                    <img src="{{ asset('images/female-avatar-profile-picture.png') }}" alt="Profile Picture">
-                @else
-                    <img src="{{ asset('images/male-avatar-profile-picture.jpg') }}" alt="Profile Picture">
-                @endif
-                @endif
+                    @if ($user->profile_picture)
+                    <img src="{{ asset('storage/' . $user->profile_picture) }}" alt="Profile Picture">
+                    @else
+                        @if ($user->gender === 'female')
+                            <img src="{{ asset('images/female-avatar-profile-picture.png') }}" alt="Profile Picture">
+                        @else
+                            <img src="{{ asset('images/male-avatar-profile-picture.jpg') }}" alt="Profile Picture">
+                        @endif
+                    @endif
                     <div>
-                    <p>
-                    <span class="fw-bold">{{ Auth::user()->name }}</span>
-                    </p>
+                        <p>
+                            <span class="fw-bold">{{ Auth::user()->name }}</span>
+                        </p>
                         <small>Public <i class="fa-solid fa-caret-down"></i></small>
                     </div>
                 </div>
@@ -139,13 +117,13 @@
                     <!-- Post Area -->
                     @foreach($twats as $twat)
                     <div class="post-container">
-                        @if($twat->user_id == Auth::user()->id)
+                                @if($twat->user_id == Auth::user()->id)
                                 <a href="#" class="float-end text-secondary" style="text-decoration:none" data-bs-toggle="dropdown"><i class="fas fa-ellipsis-v"></i></a>
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="{{ route('deletetwat', $twat->id) }}">Delete</a></li>
                                 </ul>
-                         @endif
-                            <div class="post-row">
+                                 @endif
+                            <div class="">
                             <div class="user-profile">
                                 
                                 @if ($twat->user->profile_picture)
@@ -228,7 +206,7 @@
                             <hr>
                             <!-- Replies -->
                             @foreach($twat->replies as $reply)
-                            <div class="card bg-light py-2 px-2 mb-2">
+                            <div id="reply-{{ $reply->id }}" class="card bg-light py-2 px-2 mb-2">
                                 <small>
                                     <div class="d-flex justify-content-between">
                                         <a href="{{ route('profile', $reply->user->id) }}" style="text-decoration:none">{{ $reply->user->name }}</a>
@@ -236,9 +214,9 @@
                                             <span class="text-muted"><small>⏲ {{ $reply->created_at->diffForHumans() }}</small></span>
                                             @if($reply->user->id == Auth::user()->id)
                                             <a href="#" class="dropdown-toggle" style="text-decoration:none" data-bs-toggle="dropdown"></a>
-                                            <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item" href="{{ route('deletereply', $reply->id) }}">Delete</a></li>
-                                            </ul>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" href="{{ route('deletereply', $reply->id) }}">Delete</a></li>
+                                                </ul>
                                             @endif
                                         </div>
                                     </div>
@@ -253,11 +231,12 @@
                                 <input type="hidden" name="twat_id" value="{{ $twat->id }}">
                                 <button type="submit" class="d-none"></button>
                             </form>
-                          </div>
+                        </div>
+                    </div>
                               @endforeach
 
-                      {{ $twats->links() }}
-                    </div>
+                      {{ $twats->links() }}           
+    </div>                
 
         <!-- right sidebar  -->
         <div class="right-sidebar">

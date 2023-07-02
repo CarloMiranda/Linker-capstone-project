@@ -382,32 +382,34 @@
         
                     <form action="{{ route('createtwat') }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                            <div class="row">
-                                <div class="col-md-10 mt-3" id="imageArea">
-                                    <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
-                                    <input class="form-control" placeholder="What's on your mind, {{ Auth::user()->name }}?" type="text" name="content">
-                                    <div class="row add-post-links mt-3">
-                                        <div class="col-md-4">
-                                            <a href=""><img src="{{ asset('images/live-video.png') }}" alt=""> Live Video</a>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <input class="form-control d-none" type="file" name="image" id="image" accept=".gif,.jpg,.jpeg,.png" onchange="imageUpload(event);">
-                                            <label for="image" style="cursor: pointer;" id="imageUploadLabel"><img src="{{ asset('images/photo.png') }}" alt=""> Photo/Video</label>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <a href=""><img src="{{ asset('images/feeling.png') }}" alt=""> Feeling/Activity</a>
-                                        </div>
+                        <div class="row">
+                            <div class="col-md-10 mt-3" id="imageArea">
+                                <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                                <input class="form-control" placeholder="What's on your mind, {{ Auth::user()->name }}?" type="text" name="content">
+                                <div class="row add-post-links mt-3">
+                                    <div class="col-md-4">
+                                        <a href=""><img src="{{ asset('images/live-video.png') }}" alt=""> Live Video</a>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input class="form-control d-none" type="file" name="image" id="image" accept=".gif,.jpg,.jpeg,.png" onchange="imageUpload(event);">
+                                        <label for="image" style="cursor: pointer;" id="imageUploadLabel"><img src="{{ asset('images/photo.png') }}" alt=""> Photo/Video</label>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <a href=""><img src="{{ asset('images/feeling.png') }}" alt=""> Feeling/Activity</a>
                                     </div>
                                 </div>
-                                <div class="col-md-2 mt-3">
-                                    <button type="submit" class="btn btn-primary ms-2">
-                                        Post
-                                    </button>
-                                </div>
                             </div>
+                            <div class="col-md-2 mt-3">
+                                <button type="submit" class="btn btn-primary ms-2">
+                                    Post
+                                </button>
+                            </div>
+                        </div>
                     </form>
                 </div>
-                @foreach($user->twats as $twat)
+
+                <!-- User posted -->
+                @foreach($user->twats()->orderByDesc('created_at')->get() as $twat)
                 <div class="post-container my-2 mt-4">
                     <div class="post-row">
                         <div class="user-profile">
@@ -440,47 +442,115 @@
                         <img src="{{ Storage::url('images/'.$twat->image_path) }}" class="img-fluid">
                     @endif
 
-                    @if(!Auth::user()->hasReaction($twat->id))
-                            <div class="post-row">
-                                <form action="{{ route('reaction.create') }}" method="POST" class="mt-2">
-                                    @csrf
-                                    <input type="hidden" name="reaction" id="reaction">
-                                    <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
-                                    <input type="hidden" name="twat_id" value="{{ $twat->id }}">
-                                    
-                                    <div class="reaction-button-container">
-                                        <button type="button" class="btn-light btn btn-sm rounded-pill reaction-button"
-                                                onmouseover="showReactions(this)" onmouseout="startHideTimer(this)">
-                                            👍🏻
-                                        </button>
-                                        
-                                        <div class="reactions-container">
-                                            <button type="submit" class="btn-light btn btn-sm rounded-pill"
-                                                    onclick="setReaction('like')">👍🏻</button>
-                                            <button type="submit" class="btn-light btn btn-sm rounded-pill"
-                                                    onclick="setReaction('heart')">💖</button>
-                                            <button type="submit" class="btn-light btn btn-sm rounded-pill"
-                                                    onclick="setReaction('laugh')">😂</button>
-                                            <button type="submit" class="btn-light btn btn-sm rounded-pill"
-                                                    onclick="setReaction('angry')">😡</button>
-                                            <button type="submit" class="btn-light btn btn-sm rounded-pill"
-                                                    onclick="setReaction('dislike')">👎🏻</button>
+                        @if(!Auth::user()->hasReaction($twat->id))
+                        <div class="post-row">
+                            <form action="{{ route('reaction.create') }}" method="POST" class="mt-2">
+                                @csrf
+                                <input type="hidden" name="reaction" id="reaction">
+                                <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                                <input type="hidden" name="twat_id" value="{{ $twat->id }}">
+                                                        
+                                <div class="reaction-button-container">
+                                    <button type="button" class="btn-light btn btn-sm rounded-pill reaction-button"
+                                            onmouseover="showReactions(this)" onmouseout="startHideTimer(this)">
+                                        👍🏻
+                                    </button>
+                                                            
+                                    <div class="reactions-container">
+                                        <button type="submit" class="btn-light btn btn-sm rounded-pill"
+                                                onclick="setReaction('like')">👍🏻</button>
+                                        <button type="submit" class="btn-light btn btn-sm rounded-pill"
+                                                onclick="setReaction('heart')">💖</button>
+                                        <button type="submit" class="btn-light btn btn-sm rounded-pill"
+                                                onclick="setReaction('laugh')">😂</button>
+                                        <button type="submit" class="btn-light btn btn-sm rounded-pill"
+                                                onclick="setReaction('angry')">😡</button>
+                                        <button type="submit" class="btn-light btn btn-sm rounded-pill"
+                                                onclick="setReaction('dislike')">👎🏻</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                            @endif
+
+                            <p>
+                                {{-- Total like --}}
+                                @if($twat->countReaction('like'))
+                                    <small><small><span class="badge bg-light text-dark">{{$twat->countReaction('like')}} 👍🏻</span></small></small>
+                                @endif
+
+                                {{-- Total heart --}}
+                                @if($twat->countReaction('heart'))
+                                    <small><small><span class="badge bg-light text-dark">{{$twat->countReaction('heart')}} 💖</span></small></small>
+                                @endif
+
+                                {{-- Total laugh --}}
+                                @if($twat->countReaction('laugh'))
+                                    <small><small><span class="badge bg-light text-dark">{{$twat->countReaction('laugh')}} 😂</span></small></small>
+                                @endif
+
+                                {{-- Total angry --}}
+                                @if($twat->countReaction('angry'))
+                                    <small><small><span class="badge bg-light text-dark">{{$twat->countReaction('angry')}} 😡</span></small></small>
+                                @endif
+
+                                {{-- Total dislike --}}
+                                @if($twat->countReaction('dislike'))
+                                    <small><small><span class="badge bg-light text-dark">{{$twat->countReaction('dislike')}} 👎🏻</span></small></small>
+                                @endif
+                            </p>
+                            <hr>
+                            <!-- Replies -->
+                            @foreach($twat->replies as $reply)
+                            <div id="reply-{{ $reply->id }}" class="card bg-light py-2 px-2 mb-2">
+                                <small>
+                                    <div class="d-flex justify-content-between">
+                                        <a href="{{ route('profile', $reply->user->id) }}" style="text-decoration:none">{{ $reply->user->name }}</a>
+                                        <div>
+                                            <span class="text-muted"><small>⏲ {{ $reply->created_at->diffForHumans() }}</small></span>
+                                            @if($reply->user->id == Auth::user()->id)
+                                            <a href="#" class="dropdown-toggle" style="text-decoration:none" data-bs-toggle="dropdown"></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item" href="{{ route('deletereply', $reply->id) }}">Delete</a></li>
+                                            </ul>
+                                            @endif
                                         </div>
                                     </div>
-                                </form>
+                                    {{ $reply->content }}
+                                </small>
                             </div>
-                            @endif
+                            @endforeach
+
+                        <form action="{{ route('createreply') }}" method="POST" class="mt-2">
+                        @csrf
+                        <input type="text" class="form-control" placeholder="💬 Add a reply..." name="content" required>
+                        <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                        <input type="hidden" name="twat_id" value="{{ $twat->id }}">
+                        <button type="submit" class="d-none"></button>
+                        </form>
                 </div>
                 @endforeach
-            </div>
-        </div>
-
-                
-                 
                     
-                 
-    
-                
+            </div>
+        </div>           
     </div>
 </div>
+<script>
+        var hideTimer;
+    
+        function showReactions(button) {
+            clearTimeout(hideTimer);
+            button.parentNode.classList.add('show-reactions');
+        }
+        
+        function startHideTimer(button) {
+            hideTimer = setTimeout(function() {
+                button.parentNode.classList.remove('show-reactions');
+            }, 2000);
+        }
+        
+        function setReaction(reaction) {
+            document.getElementById('reaction').value = reaction;
+        }
+    </script>
 @endsection

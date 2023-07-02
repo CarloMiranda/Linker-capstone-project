@@ -26,8 +26,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $user = Auth::user(); // Retrieve the authenticated user
-        $twats = Twat::orderBy('created_at', 'desc')->paginate(); // Retrieve the twats
+        $user = Auth::user();
+        $twats = Twat::orderBy('created_at', 'desc')->paginate();
     
         return view('home', compact('user', 'twats'));
     }

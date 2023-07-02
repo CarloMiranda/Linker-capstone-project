@@ -64,7 +64,7 @@
         border-radius: 4px;
         overflow: hidden;
         right: 5%;
-        top: 75px;
+        top: 72px;
         max-height: 0;
         transition: max-height 0.3s;
     }

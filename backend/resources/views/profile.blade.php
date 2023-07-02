@@ -39,7 +39,7 @@
 
     .profile-btn {
         border-radius: 50%;
-        background: var(--body-color);
+        background: var(--bg-color);
         padding: 2px 7px;
         border: none;
         position: relative;

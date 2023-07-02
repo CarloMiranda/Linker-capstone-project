@@ -93,13 +93,13 @@
                     </a>
                 </li>
                 <li>
-                    <ion-icon title="Notifications" name="{{ Request::is('notifications') ? 'notifications' : 'notifications-outline' }}"></ion-icon>
+                    <a href="#"><ion-icon title="Notifications" name="{{ Request::is('notifications') ? 'notifications' : 'notifications-outline' }}"></ion-icon></a>
                 </li>
                 <li>
-                    <ion-icon title="Messages" name="{{ Request::is('mail') ? 'mail' : 'mail-outline' }}"></ion-icon>
+                    <a href="#"><ion-icon title="Messages" name="{{ Request::is('mail') ? 'mail' : 'mail-outline' }}"></ion-icon></a>
                 </li>
                 <li>
-                    <ion-icon title="Videos" name="{{ Request::is('play') ? 'play-circle' : 'play-circle-outline' }}"></ion-icon>
+                    <a href="#"><ion-icon title="Videos" name="{{ Request::is('play') ? 'play-circle' : 'play-circle-outline' }}"></ion-icon></a>
                 </li>
             </ul>
         </div>
@@ -111,7 +111,7 @@
             </div>
             <div class="nav-user-icon"> 
                 @auth
-                    <div class="nav-profile" style="text-decoration:none">  
+                    <div class="nav-profile" style="text-decoration:none; cursor: pointer;">  
                     @if ($user->profile_picture)
                         <img src="{{ asset('storage/' . ($user->id === Auth::id() ? $user->profile_picture : Auth::user()->profile_picture)) }}" onclick="settingsMenuToggle()">
                     @else

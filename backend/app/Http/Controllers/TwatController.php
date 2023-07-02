@@ -32,7 +32,7 @@ class TwatController extends Controller
         }
 
         $twat->save();
-        return redirect()->back()->with('success', 'Post created successfully.');
+        // return redirect()->back()->with('success', 'Post created successfully.');
     }
 
 
@@ -45,7 +45,7 @@ class TwatController extends Controller
 
         if(Auth::user()->id == $twat->user->id){
             $twat->delete();
-            return redirect()->route('home')->with('success', " deleted!");
+            // return redirect()->route('home')->with('success', " deleted!");
         
         }
     }       

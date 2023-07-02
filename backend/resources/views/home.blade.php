@@ -104,7 +104,7 @@
                                     </div>
                                     <div class="col">
                                         <input class="form-control d-none" type="file" name="image" id="image" accept=".gif,.jpg,.jpeg,.png" onchange="imageUpload(event);">
-                                        <label for="image" style="cursor: pointer;" id="imageUploadLabel"><img src="images/photo.png" alt=""> Photo/Video</label>
+                                        <label for="image" style="cursor: pointer;" id="imageUploadLabel" class=""><img src="images/photo.png" class="me-2"> Photo/Video</label>
                                     </div>
                                     <div class="col">
                                         <a href=""><img src="images/feeling.png" alt=""> Feeling/Activity</a>

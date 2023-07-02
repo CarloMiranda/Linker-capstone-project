@@ -5,7 +5,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-6 my-auto">
-           <img src="https://www.mnhealthnetwork.com/images/landing/people-2.png" class="img-fluid" alt="">
+           <img src="images/Wallpaper.png" class="img-fluid" alt="">
         </div>
         <div class="col-md-6 my-auto bg-white px-5 rounded-3">
 

@@ -93,13 +93,13 @@
                     </a>
                 </li>
                 <li>
-                    <ion-icon title="Notifications" name="{{ Request::is('notifications') ? 'notifications' : 'notifications-outline' }}"></ion-icon>
+                    <a href="#"><ion-icon title="Notifications" name="{{ Request::is('notifications') ? 'notifications' : 'notifications-outline' }}"></ion-icon></a>
                 </li>
                 <li>
-                    <ion-icon title="Messages" name="{{ Request::is('mail') ? 'mail' : 'mail-outline' }}"></ion-icon>
+                    <a href="#"><ion-icon title="Messages" name="{{ Request::is('mail') ? 'mail' : 'mail-outline' }}"></ion-icon></a>
                 </li>
                 <li>
-                    <ion-icon title="Videos" name="{{ Request::is('play') ? 'play-circle' : 'play-circle-outline' }}"></ion-icon>
+                    <a href="#"><ion-icon title="Videos" name="{{ Request::is('play') ? 'play-circle' : 'play-circle-outline' }}"></ion-icon></a>
                 </li>
             </ul>
         </div>

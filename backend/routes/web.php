@@ -32,7 +32,7 @@ Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/profile/{id}', [HomeController::class, 'profile'])->name('profile');
 
-// Twat routes
+// Post routes
 Route::post('/createtwat', [TwatController::class, 'create'])->name('createtwat');
 Route::get('/deletetwat/{id}', [TwatController::class, 'delete'])->name('deletetwat');
 

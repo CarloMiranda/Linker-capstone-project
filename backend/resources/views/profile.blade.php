@@ -321,7 +321,7 @@
                     </div>
                 </div>
                 
-                    <div style="margin-left: 130px;">
+                    <div style="margin-left: 100px;">
                     @if ($user->twats()->count() > 0)
                         <h3>{{ $user->twats()->orderByDesc('created_at')->first()->user->name }}</h3>
                     @endif

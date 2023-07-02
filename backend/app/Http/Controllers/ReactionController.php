@@ -22,6 +22,6 @@ class ReactionController extends Controller
         $newReaction->user_id = Auth::user()->id;
         $newReaction->twat_id = $request->twat_id;
         $newReaction->save();
-        return redirect()->route('home')->with('success', "Reaction added!");
+        // return redirect()->route('home')->with('success', "Reaction added!");
     }
 }

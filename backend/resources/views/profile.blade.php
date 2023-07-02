@@ -11,7 +11,9 @@
     .cover-img {
         width: 100%;
         border-radius: 6px;
-        margin-bottom: 14px;
+        margin-bottom: -15px;
+        height: 450px;
+        background: linear-gradient(45deg, #1876f2 0%, #1876f2 35%, rgba(245,248,250,1) 110%);
     }
 
     .profile-details {
@@ -275,7 +277,38 @@
 </style>
 <div class="profile-container">
     <div class="">
-        <img src="{{ asset('images/cover.png') }}" class="cover-img">
+        {{-- <img src="{{ asset('images/cover.png') }}" class="cover-img"> --}}
+        <div class="wallpaper">
+            <img src="{{ asset('storage/' . $user->wallpaper_picture) }}" class="cover-img">
+            
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-outline-secondary" style="position: relative; bottom: 45px; left: 73rem;" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                <i class="fa-solid fa-camera"></i><span> Add Cover Photo</span>
+            </button>
+            
+            <!-- Modal -->
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                <div class="modal-content" style="background: var(--bg-color);">
+                    <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Add Cover Photo</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="">
+                            <form action="{{ route('upload-wallpaper-picture') }}" method="POST" enctype="multipart/form-data" class="ms-3">
+                                @csrf
+                                
+                                <input type="file" name="wallpaper_picture">
+                                <button type="submit" class="btn btn-primary">Upload</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+        
         <div class="profile-details">
             <div class="pd-left">
                 <div class="pd-row">
@@ -298,7 +331,7 @@
                 <!-- Modal -->
                 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" >
-                    <div class="modal-content"   style="background: var(--bg-color);">
+                    <div class="modal-content" style="background: var(--bg-color);">
                         <div class="modal-header">
                         <h1 class="modal-title fs-5" id="staticBackdropLabel">Change Profile</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

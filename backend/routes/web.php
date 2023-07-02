@@ -45,6 +45,7 @@ Route::post('/createreply', [ReplyController::class, 'create'])->name('createrep
 Route::get('/deletereply/{id}', [ReplyController::class, 'delete'])->name('deletereply');
 
 Route::post('/upload-profile-picture', [UserController::class, 'uploadProfilePicture'])->name('upload-profile-picture');
+Route::post('/upload-wallpaper-picture', [UserController::class, 'uploadWallpaperPicture'])->name('upload-wallpaper-picture');
 
 // --- Admin Routes --- //
 Route::get('/admin', function () {

@@ -30,4 +30,26 @@ class UserController extends Controller
 
         return redirect()->back()->with('error', 'No profile picture selected.');
     }
+
+    public function uploadWallpaperPicture(Request $request)
+    {
+        $request->validate([
+            'wallpaper_picture' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        if ($request->hasFile('wallpaper_picture')) {
+            $image = $request->file('wallpaper_picture');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+
+            // Store the uploaded image in the storage/app/public directory
+            $image->storeAs('public', $imageName);
+
+            // Update the authenticated user's wallpaper_picture column with the image name
+            Auth::user()->update(['wallpaper_picture' => $imageName]);
+
+            return redirect()->back()->with('success', 'Wallpaper updated!');
+        }
+
+        return redirect()->back()->with('error', 'No wallpaper selected.');
+    }
 }

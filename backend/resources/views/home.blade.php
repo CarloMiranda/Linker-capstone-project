@@ -95,14 +95,14 @@
                                 <input class="form-control" placeholder="What's on your mind, {{ Auth::user()->name }}?" type="text" name="content">
                                 <div class="row add-post-links mt-3">
                                     <div class="col-md-4">
-                                        <a href=""><img src="images/live-video.png" alt=""> Live Video</a>
+                                        <a href="" class=""><img src="images/live-video.png" class="me-2"> Live Video</a>
                                     </div>
                                     <div class="col-md-4">
                                         <input class="form-control d-none" type="file" name="image" id="image" accept=".gif,.jpg,.jpeg,.png" onchange="imageUpload(event);">
-                                        <label for="image" style="cursor: pointer;" id="imageUploadLabel"><img src="images/photo.png" alt=""> Photo/Video</label>
+                                        <label for="image" style="cursor: pointer;" id="imageUploadLabel" class=""><img src="images/photo.png" class="me-2"> Photo/Video</label>
                                     </div>
                                     <div class="col-md-4">
-                                        <a href=""><img src="images/feeling.png" alt=""> Feeling/Activity</a>
+                                        <a href="" class=""><img src="images/feeling.png" class="me-2"> Feeling/Activity</a>
                                     </div>
                                 </div>
                             </div>

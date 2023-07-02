@@ -32,6 +32,22 @@
         width: 100px;
         margin-right: 20px;
         border-radius: 6px;
+        position: absolute;
+        overflow: hidden;
+    }
+
+    .profile-btn {
+        border-radius: 50%;
+        background: var(--body-color);
+        padding: 2px 7px;
+        border: none;
+        position: relative;
+        top: 80px;
+        left: 80px;
+    }
+
+    .profile-btn i{
+        width: 15px;
     }
 
     .pd-row div h3 {
@@ -271,7 +287,36 @@
                     <img src="{{ asset('images/male-avatar-profile-picture.jpg') }}" alt="Profile Picture" class="pd-image" style="max-width: 200px; max-height: 200px;">
                 @endif
                 @endif
-                    <div>
+              
+                <button type="button" class="profile-btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                    <i class="fa-solid fa-camera"></i>
+                </button>
+                
+                <!-- Modal -->
+                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" >
+                    <div class="modal-content"   style="background: var(--bg-color);">
+                        <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Change Profile</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="d-flex align-items-center">
+                                <form action="{{ route('upload-profile-picture') }}" method="POST" enctype="multipart/form-data" class="ms-3">
+                                    @csrf
+                                    <input type="file" name="profile_picture">
+                                    <button type="submit" class="btn btn-primary">Upload</button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                        {{-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> --}}
+                        {{-- <button type="button" class="btn btn-primary">Understood</button> --}}
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                    <div style="margin-left: 90px;">
                         <h3>{{ Auth::user()->name }}</h3>
                         <p>120 Friends - 20 mutual</p>
                         <img src="{{ asset('images/member-1.png') }}">
@@ -281,13 +326,13 @@
                     </div>
                 </div>
 {{--         
-                <a href=""><div class="d-flex align-items-center">
+                <div class="d-flex align-items-center">
                     <form action="{{ route('upload-profile-picture') }}" method="POST" enctype="multipart/form-data" class="ms-3">
                         @csrf
                         <input type="file" name="profile_picture">
                         <button type="submit" class="btn btn-primary">Upload</button>
                     </form>
-                </div></a>
+                </div>
 
                 <div>
                     
@@ -306,6 +351,7 @@
                 <button type="button"><img src="{{ asset('images/message.png') }}">Message</button>
                 <br>
                 <a href=""><img src="{{ asset('images/more.png') }}"></a>
+                
             </div>
         </div>
 

@@ -59,7 +59,7 @@
         position: absolute;
         width: 90%;
         max-width: 350px;
-        background: var(--bg-color);
+        background: var(--front-color);
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
         border-radius: 4px;
         overflow: hidden;

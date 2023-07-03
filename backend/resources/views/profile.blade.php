@@ -272,7 +272,7 @@
 
     .wall-display button {
         position: absolute;
-        bottom: 33%;
+        bottom: 29%;
         right: 6%;
     }
 </style>
@@ -295,7 +295,7 @@
                 <div class="modal-content" style="background: var(--bg-color);">
                     <div class="modal-header">
                     <h1 class="modal-title fs-5" id="staticBackdropLabel">Add Cover Photo</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close" ><i class="fa-solid fa-x"></i></button>
                     </div>
                     <div class="modal-body">
                         <div class="">
@@ -335,7 +335,7 @@
                     <div class="modal-content" style="background: var(--bg-color);">
                         <div class="modal-header">
                         <h1 class="modal-title fs-5" id="staticBackdropLabel">Change Profile</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close"><i class="fa-solid fa-x"></i></button>
                         </div>
                         <div class="modal-body">
                             <div class="d-flex align-items-center">
@@ -394,21 +394,50 @@
                 
                 <br>
                 <div class="btn-group dropstart more-btn">
-                    <button type="button" title="Option" data-bs-toggle="dropdown" aria-expanded="false" style="background: var(--bg-color);">
+                    <button type="button" title="Option" data-bs-toggle="dropdown" aria-expanded="false" style="background: var(--icon-color);">
                         <i class="fa-solid fa-ellipsis"></i>
                     </button>
-                    <ul class="dropdown-menu p-1" style="background: var(--bg-color); width: 168px !important;">
-                      <li style="border-bottom: 1px solid #626262; padding: 5px;"><a class="text-decoration-none text-secondary" href="{{ route('home') }} "><i class="fa-sharp fa-solid fa-house"></i> Return Home </a></li>
-                      <li style="border-bottom: 1px solid #626262; padding: 5px;"><a class="text-decoration-none text-secondary" href="#"><i class="fa-solid fa-plus"></i> Add Wallpaper</a></li>
-                      <li style="padding: 5px;"><a type="button" data-bs-toggle="modal" data-bs-target="#account_details">
+                    <ul class="dropdown-menu p-1" style="background: var(--front-color); width: 195px !important;">
+                      
+                      <li style="border-bottom: 1px solid #626262; padding: 5px;"><a class="text-decoration-none text-secondary" type="button" data-bs-toggle="modal" data-bs-target="#background_photo"><i class="fa-solid fa-plus"></i> Add Wallpaper</a></li>
+                      <li style="border-bottom: 1px solid #626262; padding: 5px;"><a class="text-decoration-none text-secondary" type="button"><i href="{{ route('delete-background-photo', $user->background_photo) }}" class="fa-solid fa-circle-minus"></i> Remove Wallpaper</a></li>
+                      <li style="border-bottom: 1px solid #626262; padding: 5px;"><a type="button" data-bs-toggle="modal" data-bs-target="#account_details">
                         <span class="text-decoration-none text-secondary"><i class="fa-solid fa-address-card"></i> Account Details</span>
                     </a></li>
+                    <li style=" padding: 5px;"><a class="text-decoration-none text-secondary" href="{{ route('home') }} "><i class="fa-sharp fa-solid fa-house"></i> Return Home </a></li>
                     </ul>
                   </div>
             </div>
         </div>
 
-        
+        {{-- modal for add wallpaper  --}}
+        <div class="modal fade" id="background_photo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" >
+            <div class="modal-content" style="background: var(--bg-color);">
+                <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Add Wallpaper Background</h1>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close"><i class="fa-solid fa-x"></i></button>
+                </div>
+                <div class="modal-body">
+                    <div class="d-flex align-items-center">
+                        <form action="{{ route('upload-background-photo') }}" method="POST" enctype="multipart/form-data" class="">
+                            @csrf
+                            
+                            <input type="file" name="background_photo">
+                            <button type="submit" class="btn btn-secondary">Upload</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                {{-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> --}}
+                {{-- <button type="button" class="btn btn-primary">Understood</button> --}}
+                </div>
+            </div>
+            </div>
+        </div>
+
+
+        {{-- modal for account details --}}
         <div class="modal fade" id="account_details" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" >
             <div class="modal-content" style="background: var(--bg-color);">
@@ -560,7 +589,7 @@
                                 <li><a class="dropdown-item" href="#">Edit</a></li>
                             </ul>
                         </div>
-                            @endif
+                        @endif
                     </div>
                             <p class="post-text">
                                 {{ $twat->content }}

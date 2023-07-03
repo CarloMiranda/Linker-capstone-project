@@ -30,18 +30,24 @@
     --body-color: #efefef;
     --nav-color: #1876f2;
     --bg-color: #fff;
+    --icon-color: #efefef;
+    --front-color: #efefef;
 }
 
 .dark-theme {
     /* --body-color: #091321; */
     --body-color: #000000;
     --nav-color: #0d0d0d;
-    --bg-color: #242526;
+    --bg-color: #24252624;
+    --front-color:#1e1f20fc;
+    --icon-color: #626262;
 }
 
 #app {
     background: var(--body-color);
     transition: background 0.3s;
+    background: linear-gradient(transparent, rgba(1, 1, 1, 0.49)), url({{ asset('storage/' . $user->background_photo) }});
+    background-attachment: fixed;
 }
 
 nav {
@@ -53,6 +59,7 @@ nav {
     top: 0;
     z-index: 100;
     position: sticky;
+    
 }
 
 .logo {
@@ -158,6 +165,7 @@ font-weight: 500;
     top: 70px;
     flex-basis: 25%;
     align-self: flex-start;
+    background: var(--bg-color);
 }   
 
 .right-sidebar {
@@ -755,6 +763,7 @@ font-weight: 500;
 
 <body>
     <div id="app">
+     
         @include('layouts.nav')
         <main>
             @yield('content')

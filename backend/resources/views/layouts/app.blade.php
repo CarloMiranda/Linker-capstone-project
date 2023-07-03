@@ -548,31 +548,7 @@ font-weight: 500;
     display: flex;
 } 
 
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
 
-.dropdown-toggle {
-    color: #333;
-    text-decoration: none;
-}
-
-.dropdown-menu {
-    display: none;
-    position: absolute;
-    list-style: none;
-    background-color: #fff;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-}
-
-.dropdown-menu li:hover {
-    background-color: #f5f5f5;
-}
-
-.dropdown:hover .dropdown-menu {
-    display: block;
-}
 /* For Mobile Phones Portrait or Landscape View */
 @media screen
     and (max-device-width: 640px) {
@@ -741,6 +717,7 @@ font-weight: 500;
 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css">

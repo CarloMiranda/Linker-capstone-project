@@ -41,7 +41,7 @@
 
     .profile-btn {
         border-radius: 50%;
-        background: var(--body-color);
+        background: var(--bg-color);
         padding: 2px 7px;
         border: none;
         position: relative;
@@ -344,10 +344,6 @@
                                 </form>
                             </div>
                         </div>
-                        <div class="modal-footer">
-                        {{-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> --}}
-                        {{-- <button type="button" class="btn btn-primary">Understood</button> --}}
-                        </div>
                     </div>
                     </div>
                 </div>
@@ -368,17 +364,35 @@
                         <img src="{{ asset('images/member-4.png') }}">
                     </div>
                 </div>
-                
-{{--         
+                @foreach ($user->notifications()->orderByDesc('created_at')->get() as $notification)
+                @if (Auth::check() && $user->id === Auth::user()->id)
+                    <div class="notification" id="notification-{{ $notification->id }}">
+                        @if ($notification->status !== 'confirmed')
+                        <p>{{ $notification->message }}</p>
+                        <div class="notification-actions">
+                            
+                                <form action="{{ route('confirmFriend', $notification->id) }}" method="POST" id="confirm-form-{{ $notification->id }}">
+                                    @csrf
+                                    <button type="submit" class="btn btn-primary confirm-btn">Confirm</button>
+                                </form>
+                        
+                            
+                            <form action="{{ route('deleteFriend', $notification->id) }}" method="POST" id="delete-form-{{ $notification->id }}">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger delete-btn">Delete</button>
+                            </form> 
+                        </div>@endif
+                    </div>
+                @endif
+            @endforeach
 
-                <div>
-                    {{ $user->email }}
-                    <br>
-                    <span class="mb-3 badge text-bg-primary">Joined on {{ date_format($user->created_at, "F j q, Y") }}</span>
-                    <br>
-                    <a href="{{ route('home') }} ">← Back to Home</a>
-                    
-                </div> --}}
+            @if (session('success'))
+                <div class="alert alert-success mt-3">
+                    {{ session('success') }}
+                </div>
+            @endif
+
             </div>
             <div class="pd-right">
 
@@ -616,7 +630,7 @@
                                         <div>
                                             <span class="text-muted"><small>⏲ {{ $reply->created_at->diffForHumans() }}</small></span>
                                             @if($reply->user->id == Auth::user()->id)
-                                            <div class="dropdown mx-3 float-end">
+                                            <div class="dropdown ms-3 float-end">
                                                 <a href="#" class=" text-secondary" style="text-decoration:none" data-bs-toggle="dropdown"><i class="fas fa-ellipsis-v"></i></a>
                                                 <ul class="dropdown-menu">
                                                     <li><a class="dropdown-item" href="{{ route('deletereply', $reply->id) }}">Delete</a></li>
@@ -662,5 +676,8 @@
         function setReaction(reaction) {
             document.getElementById('reaction').value = reaction;
         }
+
+        // To hide the friend request confirmation 
+
     </script>
 @endsection

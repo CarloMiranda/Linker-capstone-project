@@ -80,6 +80,11 @@
     .bottom-menu {
         padding: 15px;
     }
+    .nav-left .badge {
+        position: absolute;
+        top: 10%;
+        right: 4%;
+    }
     
 </style>
 
@@ -93,15 +98,28 @@
                     </a>
                 </li>
                 <li>
+                    <a type="button" class=" position-relative">
+                    <ion-icon title="Notifications" name="{{ Request::is('notifications') ? 'notifications' : 'notifications-outline' }}"></ion-icon>
+                    <span class="translate-middle badge rounded-pill bg-danger">
+                        6
+                        <span class="visually-hidden">unread messages</span>
+                    </span>
+                    </a>
                     <a href="#">
-                        <ion-icon title="Notifications" name="{{ Request::is('notifications') ? 'notifications' : 'notifications-outline' }}"></ion-icon>
+                        
                         @if (isset($notificationCount) && $notificationCount > 0)
                             <span class="badge badge-danger">{{ $notificationCount }}</span>
                         @endif
                     </a>
                 </li>
                 <li>
-                    <a href="#"><ion-icon title="Messages" name="{{ Request::is('mail') ? 'mail' : 'mail-outline' }}"></ion-icon></a>
+                    <a type="button" class=" position-relative">
+                        <ion-icon title="Messages" name="{{ Request::is('mail') ? 'mail' : 'mail-outline' }}"></ion-icon>
+                        <span class="translate-middle badge rounded-pill bg-danger">
+                            9
+                            <span class="visually-hidden">unread messages</span>
+                        </span>
+                    </a>
                 </li>
                 <li>
                     <a href="#"><ion-icon title="Videos" name="{{ Request::is('play') ? 'play-circle' : 'play-circle-outline' }}"></ion-icon></a>
@@ -109,7 +127,6 @@
             </ul>
         </div>
         <div class="nav-right">
-
             <div class="search-box">
                 <button class="btn-search"><i class="fas fa-search"></i></button>
                 <input type="text" class="input-search" placeholder="Type to Search...">

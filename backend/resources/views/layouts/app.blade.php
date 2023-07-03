@@ -24,7 +24,7 @@
     --nav-color: #1876f2;
     --bg-color: #fff;
     --icon-color: #efefef;
-    --front-color: #efefef;
+    --front-color: #fff;
 }
 
 .dark-theme {

@@ -384,11 +384,11 @@
                     <button type="button" title="Option" data-bs-toggle="dropdown" aria-expanded="false" style="background: var(--bg-color);">
                         <i class="fa-solid fa-ellipsis"></i>
                     </button>
-                    <ul class="dropdown-menu p-2" style="background: var(--bg-color);">
-                      <li style="border-bottom: 1px solid #626262"><a class="text-decoration-none text-secondary" href="{{ route('home') }} ">Return Home</a></li>
-                      <li style="border-bottom: 1px solid #626262"><a class="text-decoration-none text-secondary" href="#">Add Wallpaper</a></li>
-                      <li><a type="button" data-bs-toggle="modal" data-bs-target="#account_details">
-                        <span class="text-decoration-none text-secondary">Account Details</span>
+                    <ul class="dropdown-menu p-1" style="background: var(--bg-color); width: 168px !important;">
+                      <li style="border-bottom: 1px solid #626262; padding: 5px;"><a class="text-decoration-none text-secondary" href="{{ route('home') }} "><i class="fa-sharp fa-solid fa-house"></i> Return Home </a></li>
+                      <li style="border-bottom: 1px solid #626262; padding: 5px;"><a class="text-decoration-none text-secondary" href="#"><i class="fa-solid fa-plus"></i> Add Wallpaper</a></li>
+                      <li style="padding: 5px;"><a type="button" data-bs-toggle="modal" data-bs-target="#account_details">
+                        <span class="text-decoration-none text-secondary"><i class="fa-solid fa-address-card"></i> Account Details</span>
                     </a></li>
                     </ul>
                   </div>

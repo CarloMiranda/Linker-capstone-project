@@ -378,14 +378,13 @@
                                 @csrf
                                 <button type="submit" class="btn btn-primary confirm-btn">Confirm</button>
                             </form>
-                        @endif
                             <form action="{{ route('deleteFriend', $notification->id) }}" method="POST" id="delete-form-{{ $notification->id }}">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger delete-btn mx-3">Delete</button>
                             </form> 
                             </div>
-                            
+                            @endif
                         </div>
                     </div>
                 @endif

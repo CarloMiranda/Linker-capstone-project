@@ -116,9 +116,9 @@
             </div>
             <div class="nav-user-icon" style="cursor: pointer"> 
                 @auth
-                    <div class="nav-profile" style="text-decoration:none">  
+                    <div class="nav-profile">  
                    
-                    @if (Auth::user()->name)
+                    @if (Auth::user()->profile_picture)
                         <img src="{{ asset('storage/' . ($user->id === Auth::id() ? $user->profile_picture : Auth::user()->profile_picture)) }}" onclick="settingsMenuToggle()">
                     @elseif ($user->gender === 'female')
                         <img src="{{ asset('images/female-avatar-profile-picture.jpg') }}" onclick="settingsMenuToggle()" alt="Profile Picture">
@@ -134,7 +134,7 @@
                                 </div>
                                 <div class="settings-item mt-2 top">
                                 <a href="{{ route('profile', Auth::user()->id) }}">  
-                                @if (Auth::user()->name)
+                                @if (Auth::user()->profile_picture)
                                     <img src="{{ asset('storage/' . ($user->id === Auth::id() ? $user->profile_picture : Auth::user()->profile_picture)) }}" onclick="settingsMenuToggle()">
                                 @elseif ($user->gender === 'female')
                                     <img src="{{ asset('images/female-avatar-profile-picture.jpg') }}" onclick="settingsMenuToggle()" alt="Profile Picture">

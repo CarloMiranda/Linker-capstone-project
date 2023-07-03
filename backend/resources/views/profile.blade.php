@@ -387,23 +387,25 @@
                     <ul class="dropdown-menu p-2" style="background: var(--bg-color);">
                       <li style="border-bottom: 1px solid #626262"><a class="text-decoration-none text-secondary" href="{{ route('home') }} ">Return Home</a></li>
                       <li style="border-bottom: 1px solid #626262"><a class="text-decoration-none text-secondary" href="#">Add Wallpaper</a></li>
-                      <li><a class="text-decoration-none text-secondary" href="#account_details">Account Details</a></li>
+                      <li><a type="button" data-bs-toggle="modal" data-bs-target="#account_details">
+                        <span class="text-decoration-none text-secondary">Account Details</span>
+                    </a></li>
                     </ul>
                   </div>
             </div>
         </div>
 
+        
         <div class="modal fade" id="account_details" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" >
             <div class="modal-content" style="background: var(--bg-color);">
                 <div class="modal-header">
-                <h1 class="modal-title fs-5" id="staticBackdropLabel">Account Details</h1>
-                {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
+                <h1 class="modal-title fs-5" class="text-secondary" id="staticBackdropLabel">Account Details</h1>
                 </div>
                 <div class="modal-body">
-                    {{ $user->email }}
+                    <span>Email: {{ $user->email }}</span>
                     <hr>
-                    <span class="mb-3 badge text-bg-primary">Joined on {{ date_format($user->created_at, "F j q, Y") }}</span> 
+                    <span class="mb-3">Joined on {{ date_format($user->created_at, "F j, Y") }}</span> 
                 </div>
                 <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Ok</button>

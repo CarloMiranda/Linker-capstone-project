@@ -4,7 +4,7 @@
 @section('title', 'Register')
 <div class="container">
     <div class="row justify-content-around">
-        <div class="col-md-6">
+        <div class="col-md-6 mt-5">
             <img src="images/Register.png" class="img-fluid" alt="">
          </div>
         <div class="col-md-6 mt-5">

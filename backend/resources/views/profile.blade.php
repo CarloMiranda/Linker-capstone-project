@@ -92,16 +92,6 @@
     .pd-right {
         text-align: right;
     }
-    .pd-right a{
-        background: #e4e6eb;
-        border-radius: 3px;
-        padding: 12px;
-        display: inline-flex;
-        margin-top: 30px;
-    }
-    .pd-right a img{
-        width: 20px;
-    }
 
     .profile-info{
         display: flex;
@@ -274,17 +264,30 @@
         bottom: 0;
         left: 0;
     }
+
+    .wallpaper img {
+        position: relative;
+        margin-bottom: 1rem;
+    }
+
+    .wall-display button {
+        position: absolute;
+        bottom: 33%;
+        right: 7%;
+    }
 </style>
 <div class="profile-container">
     <div class="">
-        {{-- <img src="{{ asset('images/cover.png') }}" class="cover-img"> --}}
         <div class="wallpaper">
             <img src="{{ asset('storage/' . $user->wallpaper_picture) }}" class="cover-img">
-            
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-outline-secondary" style="position: relative; bottom: 45px; left: 73rem;" data-bs-toggle="modal" data-bs-target="#cover_modal">
-                <i class="fa-solid fa-camera"></i><span> Add Cover Photo</span>
-            </button>
+
+            <div class="wall-display">            
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-outline-secondary add-cover-btn" data-bs-toggle="modal" data-bs-target="#cover_modal">
+                    <i class="fa-solid fa-camera"></i><span> Add Cover Photo</span>
+                </button>
+            </div>
+        </div>
             
             <!-- Modal -->
             <div class="modal fade" id="cover_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -292,7 +295,7 @@
                 <div class="modal-content" style="background: var(--bg-color);">
                     <div class="modal-header">
                     <h1 class="modal-title fs-5" id="staticBackdropLabel">Add Cover Photo</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close" ><i class="fa-solid fa-x"></i></button>
                     </div>
                     <div class="modal-body">
                         <div class="">
@@ -307,7 +310,7 @@
                 </div>
                 </div>
             </div>
-        </div>
+        
         
         <div class="profile-details">
             <div class="pd-left">
@@ -332,7 +335,7 @@
                     <div class="modal-content" style="background: var(--bg-color);">
                         <div class="modal-header">
                         <h1 class="modal-title fs-5" id="staticBackdropLabel">Change Profile</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close"><i class="fa-solid fa-x"></i></button>
                         </div>
                         <div class="modal-body">
                             <div class="d-flex align-items-center">
@@ -366,23 +369,24 @@
                 </div>
                 @foreach ($user->notifications()->orderByDesc('created_at')->get() as $notification)
                 @if (Auth::check() && $user->id === Auth::user()->id)
-                    <div class="notification" id="notification-{{ $notification->id }}">
+                    <div class="notification mt-5" id="notification-{{ $notification->id }}">
                         @if ($notification->status !== 'confirmed')
-                        <p>{{ $notification->message }}</p>
+                        <h6>{{ $notification->message }}</h6>
                         <div class="notification-actions">
-                            
-                                <form action="{{ route('confirmFriend', $notification->id) }}" method="POST" id="confirm-form-{{ $notification->id }}">
-                                    @csrf
-                                    <button type="submit" class="btn btn-primary confirm-btn">Confirm</button>
-                                </form>
-                        
-                            
+                            <div class="d-flex">
+                            <form action="{{ route('confirmFriend', $notification->id) }}" method="POST" id="confirm-form-{{ $notification->id }}">
+                                @csrf
+                                <button type="submit" class="btn btn-primary confirm-btn">Confirm</button>
+                            </form>
+                        @endif
                             <form action="{{ route('deleteFriend', $notification->id) }}" method="POST" id="delete-form-{{ $notification->id }}">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger delete-btn">Delete</button>
+                                <button type="submit" class="btn btn-danger delete-btn mx-3">Delete</button>
                             </form> 
-                        </div>@endif
+                            </div>
+                            
+                        </div>
                     </div>
                 @endif
             @endforeach
@@ -415,8 +419,66 @@
 
                 
                 <br>
-                <a href=""><img src="{{ asset('images/more.png') }}"></a>
-                
+                <div class="btn-group dropstart more-btn">
+                    <button type="button" title="Option" data-bs-toggle="dropdown" aria-expanded="false" style="background: var(--icon-color);">
+                        <i class="fa-solid fa-ellipsis"></i>
+                    </button>
+                    <ul class="dropdown-menu p-1" style="background: var(--front-color); width: 195px !important;">
+                      
+                      <li style="border-bottom: 1px solid #626262; padding: 5px;"><a class="text-decoration-none text-secondary" type="button" data-bs-toggle="modal" data-bs-target="#background_photo"><i class="fa-solid fa-plus"></i> Add Wallpaper</a></li>
+                      <li style="border-bottom: 1px solid #626262; padding: 5px;"><a class="text-decoration-none text-secondary" type="button"><i href="{{ route('delete-background-photo', $user->background_photo) }}" class="fa-solid fa-circle-minus"></i> Remove Wallpaper</a></li>
+                      <li style="border-bottom: 1px solid #626262; padding: 5px;"><a type="button" data-bs-toggle="modal" data-bs-target="#account_details">
+                        <span class="text-decoration-none text-secondary"><i class="fa-solid fa-address-card"></i> Account Details</span>
+                    </a></li>
+                    <li style=" padding: 5px;"><a class="text-decoration-none text-secondary" href="{{ route('home') }} "><i class="fa-sharp fa-solid fa-house"></i> Return Home </a></li>
+                    </ul>
+                  </div>
+            </div>
+        </div>
+
+        {{-- modal for add wallpaper  --}}
+        <div class="modal fade" id="background_photo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" >
+            <div class="modal-content" style="background: var(--bg-color);">
+                <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Add Wallpaper Background</h1>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close"><i class="fa-solid fa-x"></i></button>
+                </div>
+                <div class="modal-body">
+                    <div class="d-flex align-items-center">
+                        <form action="{{ route('upload-background-photo') }}" method="POST" enctype="multipart/form-data" class="">
+                            @csrf
+                            
+                            <input type="file" name="background_photo">
+                            <button type="submit" class="btn btn-secondary">Upload</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                {{-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> --}}
+                {{-- <button type="button" class="btn btn-primary">Understood</button> --}}
+                </div>
+            </div>
+            </div>
+        </div>
+
+
+        {{-- modal for account details --}}
+        <div class="modal fade" id="account_details" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" >
+            <div class="modal-content" style="background: var(--bg-color);">
+                <div class="modal-header">
+                <h1 class="modal-title fs-5" class="text-secondary" id="staticBackdropLabel">Account Details</h1>
+                </div>
+                <div class="modal-body">
+                    <span>Email: {{ $user->email }}</span>
+                    <hr>
+                    <span class="mb-3">Joined on {{ date_format($user->created_at, "F j, Y") }}</span> 
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Ok</button>
+                </div>
+            </div>
             </div>
         </div>
 
@@ -553,7 +615,7 @@
                                 <li><a class="dropdown-item" href="#">Edit</a></li>
                             </ul>
                         </div>
-                            @endif
+                        @endif
                     </div>
                             <p class="post-text">
                                 {{ $twat->content }}

@@ -52,4 +52,34 @@ class UserController extends Controller
 
         return redirect()->back()->with('error', 'No wallpaper selected.');
     }
+
+    public function uploadBackgroundPhoto(Request $request)
+    {
+        $request->validate([
+            'background_photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        if ($request->hasFile('background_photo')) {
+            $image = $request->file('background_photo');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+
+            // Store the uploaded image in the storage/app/public directory
+            $image->storeAs('public', $imageName);
+
+            // Update the authenticated user's background_photo column with the image name
+            Auth::user()->update(['background_photo' => $imageName]);
+
+            return redirect()->back()->with('success', 'Background Wallpaper updated!');
+        }
+
+        return redirect()->back()->with('error', 'No Background wallpaper selected.');
+    }
+
+    public function delete(){
+
+        if($imageName != NULL){
+            Storage::delete('public'.$imageName);
+        }
+        return redirect()->back()->with('success', " Deleted!");
+    }       
 }

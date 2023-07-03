@@ -8,19 +8,19 @@
         border: none;
     }
 
-    .dropdown-item {
+    .settings-item {
        display: flex;
     }
 
-    .dropdown-item img {
+    .settings-item img {
         width: 45px;
         height: 45px;
     }
-    .dropdown-item div p {
+    .settings-item div p {
         margin-bottom: -6px !important;
         color: #626262;
     }
-    .dropdown-item div a {
+    .settings-item div a {
         font-size: 13px;
     }
     .settings-link a {
@@ -59,7 +59,7 @@
         position: absolute;
         width: 90%;
         max-width: 350px;
-        background: var(--bg-color);
+        background: var(--front-color);
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
         border-radius: 4px;
         overflow: hidden;
@@ -133,9 +133,9 @@
             </div>
             <div class="nav-user-icon" style="cursor: pointer"> 
                 @auth
-                    <div class="nav-profile" style="text-decoration:none">  
+                    <div class="nav-profile">  
                    
-                    @if (Auth::user()->name)
+                    @if (Auth::user()->profile_picture)
                         <img src="{{ asset('storage/' . ($user->id === Auth::id() ? $user->profile_picture : Auth::user()->profile_picture)) }}" onclick="settingsMenuToggle()">
                     @elseif ($user->gender === 'female')
                         <img src="{{ asset('images/female-avatar-profile-picture.jpg') }}" onclick="settingsMenuToggle()" alt="Profile Picture">
@@ -149,9 +149,9 @@
                                 <div id="dark-btn">
                                     <span></span>
                                 </div>
-                                <div class="dropdown-item mt-2 top">
+                                <div class="settings-item mt-2 top">
                                 <a href="{{ route('profile', Auth::user()->id) }}">  
-                                @if (Auth::user()->name)
+                                @if (Auth::user()->profile_picture)
                                     <img src="{{ asset('storage/' . ($user->id === Auth::id() ? $user->profile_picture : Auth::user()->profile_picture)) }}" onclick="settingsMenuToggle()">
                                 @elseif ($user->gender === 'female')
                                     <img src="{{ asset('images/female-avatar-profile-picture.jpg') }}" onclick="settingsMenuToggle()" alt="Profile Picture">
@@ -165,7 +165,7 @@
                                     </div>
                                 </div>
                                 <hr>
-                                <div class="dropdown-item mt-2 bot">
+                                <div class="settings-item mt-2 bot">
                                     <img src="{{ asset('images/feedback.png') }}" alt="">
                                     <div class="ms-2 pt-2">
                                         <p>Give Feedback</p>
@@ -175,22 +175,22 @@
                             </div>
     
                             <div class="bottom-menu my-2 mt-2">
-                                <div class="dropdown-item settings-link">
+                                <div class="settings-item settings-link">
                                     <img src="{{ asset('images/setting.png') }}" class="setting-icon">
                                     <a href="#" class="text-decoration-none ms-2 my-auto">Setting & Privacy <i class="fa-solid fa-angle-right"></i></a>
                                 </div>
                                  
-                                <div class="dropdown-item mt-2 settings-link">
+                                <div class="settings-item mt-2 settings-link">
                                     <img src="{{ asset('images/help.png') }}" class="setting-icon">
                                     <a href="#" class="text-decoration-none ms-2 my-auto">Help & Support <i class="fa-solid fa-angle-right"></i></a>
                                 </div>
                                  
-                                <div class="dropdown-item mt-2 settings-link">
+                                <div class="settings-item mt-2 settings-link">
                                     <img src="{{ asset('images/display.png') }}" class="setting-icon">
                                     <a href="#" class="text-decoration-none ms-2 my-auto">Display & Accessibility <i class="fa-solid fa-angle-right"></i></a>
                                 </div>
                                 
-                                <div class="dropdown-item mt-2">
+                                <div class="settings-item mt-2">
                                     <img src="{{ asset('images/logout.png') }}" class="setting-icon">
                                     <a onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
                                             class="text-decoration-none ms-2 my-auto logout">Logout</a>

@@ -17,7 +17,7 @@ class ReplyController extends Controller
 
         $reply->save();
 
-        return redirect()->back()->with('success', 'Reply posted!');
+        // return redirect()->back()->with('success', 'Reply posted!');
     }
 
     public function delete($id)
@@ -26,7 +26,7 @@ class ReplyController extends Controller
 
         if(Auth::user()->id == $reply->user->id){
             $reply->delete();
-            return redirect()->back()->with('success', "Reply deleted!");
+            // return redirect()->back()->with('success', "Reply deleted!");
         }
     }
 }

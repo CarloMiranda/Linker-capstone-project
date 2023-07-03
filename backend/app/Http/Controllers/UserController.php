@@ -25,10 +25,10 @@ class UserController extends Controller
             // Update the authenticated user's profile_picture column with the image name
             Auth::user()->update(['profile_picture' => $imageName]);
 
-            return redirect()->back()->with('success', 'Profile picture uploaded successfully!');
+            // return redirect()->back()->with('success', 'Profile picture uploaded successfully!');
         }
 
-        return redirect()->back()->with('error', 'No profile picture selected.');
+        // return redirect()->back()->with('error', 'No profile picture selected.');
     }
 
     public function uploadWallpaperPicture(Request $request)
@@ -47,9 +47,9 @@ class UserController extends Controller
             // Update the authenticated user's wallpaper_picture column with the image name
             Auth::user()->update(['wallpaper_picture' => $imageName]);
 
-            return redirect()->back()->with('success', 'Wallpaper updated!');
+            // return redirect()->back()->with('success', 'Wallpaper updated!');
         }
 
-        return redirect()->back()->with('error', 'No wallpaper selected.');
+        // return redirect()->back()->with('error', 'No wallpaper selected.');
     }
 }

@@ -27,4 +27,3 @@ class FriendController extends Controller
         return redirect()->back()->with('success', 'Friend added successfully.');
     }
 }
-

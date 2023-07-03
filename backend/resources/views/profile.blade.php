@@ -92,16 +92,6 @@
     .pd-right {
         text-align: right;
     }
-    .pd-right a{
-        background: #e4e6eb;
-        border-radius: 3px;
-        padding: 12px;
-        display: inline-flex;
-        margin-top: 30px;
-    }
-    .pd-right a img{
-        width: 20px;
-    }
 
     .profile-info{
         display: flex;
@@ -289,7 +279,7 @@
             <!-- Modal -->
             <div class="modal fade" id="cover_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
+                <div class="modal-content" style="background: var(--bg-color);">
                     <div class="modal-header">
                     <h1 class="modal-title fs-5" id="staticBackdropLabel">Add Cover Photo</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -368,17 +358,6 @@
                         <img src="{{ asset('images/member-4.png') }}">
                     </div>
                 </div>
-                
-{{--         
-
-                <div>
-                    {{ $user->email }}
-                    <br>
-                    <span class="mb-3 badge text-bg-primary">Joined on {{ date_format($user->created_at, "F j q, Y") }}</span>
-                    <br>
-                    <a href="{{ route('home') }} ">← Back to Home</a>
-                    
-                </div> --}}
             </div>
             <div class="pd-right">
 
@@ -401,8 +380,35 @@
 
                 
                 <br>
-                <a href=""><img src="{{ asset('images/more.png') }}"></a>
-                
+                <div class="btn-group dropstart more-btn">
+                    <button type="button" title="Option" data-bs-toggle="dropdown" aria-expanded="false" style="background: var(--bg-color);">
+                        <i class="fa-solid fa-ellipsis"></i>
+                    </button>
+                    <ul class="dropdown-menu p-2" style="background: var(--bg-color);">
+                      <li style="border-bottom: 1px solid #626262"><a class="text-decoration-none text-secondary" href="{{ route('home') }} ">Return Home</a></li>
+                      <li style="border-bottom: 1px solid #626262"><a class="text-decoration-none text-secondary" href="#">Add Wallpaper</a></li>
+                      <li><a class="text-decoration-none text-secondary" href="#account_details">Account Details</a></li>
+                    </ul>
+                  </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="account_details" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" >
+            <div class="modal-content" style="background: var(--bg-color);">
+                <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Account Details</h1>
+                {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
+                </div>
+                <div class="modal-body">
+                    {{ $user->email }}
+                    <hr>
+                    <span class="mb-3 badge text-bg-primary">Joined on {{ date_format($user->created_at, "F j q, Y") }}</span> 
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Ok</button>
+                </div>
+            </div>
             </div>
         </div>
 

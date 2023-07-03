@@ -272,7 +272,7 @@
 
     .wall-display button {
         position: absolute;
-        bottom: 29%;
+        bottom: 33%;
         right: 6%;
     }
 </style>

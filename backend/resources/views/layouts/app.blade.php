@@ -34,6 +34,11 @@
     --front-color: #efefef;
 }
 
+body {
+    background: linear-gradient(transparent, rgba(10, 9, 9, 0.826)), url({{ asset('storage/' . $user->background_photo) }});
+    background-attachment: fixed;
+}
+
 .dark-theme {
     /* --body-color: #091321; */
     --body-color: #000000;
@@ -46,8 +51,6 @@
 #app {
     background: var(--body-color);
     transition: background 0.3s;
-    background: linear-gradient(transparent, rgba(1, 1, 1, 0.49)), url({{ asset('storage/' . $user->background_photo) }});
-    background-attachment: fixed;
 }
 
 nav {

@@ -32,7 +32,7 @@
 
     #dark-btn {
         position: absolute;
-        top: 30px;
+        top: 36px;
         right: 36px;
         background: #ccc;
         width: 45px;
@@ -52,7 +52,7 @@
     }
     #dark-btn.dark-btn-on{
         padding-left: 23px;
-        background: #091528;
+        background: #323131;
     }
 
     .settings-menu {
@@ -109,11 +109,10 @@
                 <button class="btn-search"><i class="fas fa-search"></i></button>
                 <input type="text" class="input-search" placeholder="Type to Search...">
             </div>
-            <div class="nav-user-icon"> 
+            <div class="nav-user-icon" style="cursor: pointer"> 
                 @auth
                     <div class="nav-profile" style="text-decoration:none">  
-                   
-                        
+                    @if  ($user->profile_picture)
                     @if ($user->gender === 'female')
                         <img src="{{ asset('images/female-avatar-profile-picture.png') }}" onclick="settingsMenuToggle()" alt="Profile Picture">
                     @elseif ($user->gender === 'male')
@@ -121,6 +120,8 @@
                     @else 
                         <img src="{{ asset('storage/' . ($user->id === Auth::id() ? $user->profile_picture : Auth::user()->profile_picture)) }}" onclick="settingsMenuToggle()">
                     @endif
+                    @endif
+
                     </div>
                     <div class="settings-menu">
                             <div class="top-menu shadow mx-3 mt-2">

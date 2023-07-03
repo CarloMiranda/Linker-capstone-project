@@ -41,7 +41,7 @@
 
     .profile-btn {
         border-radius: 50%;
-        background: var(--bg-color);
+        background: var(--body-color);
         padding: 2px 7px;
         border: none;
         position: relative;
@@ -352,7 +352,7 @@
                     </div>
                 </div>
                 
-                    <div style="margin-left: 100px;">
+                    <div style="margin-left: 120px !important;">
                     @if ($user->twats()->count() > 0)
                         <h3>{{ $user->twats()->orderByDesc('created_at')->first()->user->name }}</h3>
                         @else
@@ -367,13 +367,6 @@
                 </div>
                 
 {{--         
-                <div class="d-flex align-items-center">
-                    <form action="{{ route('upload-profile-picture') }}" method="POST" enctype="multipart/form-data" class="ms-3">
-                        @csrf
-                        <input type="file" name="profile_picture">
-                        <button type="submit" class="btn btn-primary">Upload</button>
-                    </form>
-                </div>
 
                 <div>
                     {{ $user->email }}

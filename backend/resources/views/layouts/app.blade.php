@@ -10,13 +10,6 @@
 
     <title>Linkr - @yield('title')</title>
     <style>
-        /* body {
-            background: url("https://w0.peakpx.com/wallpaper/239/25/HD-wallpaper-abstract-design-minimal-abstract-blue-white-dark-blue-design-flat-lines-modern-simple.jpg") no-repeat center center; 
-            -webkit-background-size: cover;
-            -moz-background-size: cover;
-            -o-background-size: cover;
-            background-size: cover;
-        } */
         @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 * {
@@ -34,11 +27,6 @@
     --front-color: #efefef;
 }
 
-body {
-    background: linear-gradient(transparent, rgba(10, 9, 9, 0.826)), url({{ asset('storage/' . $user->background_photo) }});
-    background-attachment: fixed;
-}
-
 .dark-theme {
     /* --body-color: #091321; */
     --body-color: #000000;
@@ -48,9 +36,14 @@ body {
     --icon-color: #626262;
 }
 
-#app {
+#bg_wall {
     background: var(--body-color);
     transition: background 0.3s;
+}
+
+#app {
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.2)), url({{ asset('storage/' . $user->background_photo) }});
+    background-attachment: fixed;
 }
 
 nav {
@@ -765,14 +758,17 @@ font-weight: 500;
 </head>
 
 <body>
-    <div id="app">
-     
-        @include('layouts.nav')
-        <main>
-            @yield('content')
-        </main>
-        {{-- @include('layouts.footer') --}}
-    </div>
+    <section id="bg_wall">
+        <div id="app">
+            
+            @include('layouts.nav')
+            <main>
+                @yield('content')
+            </main>
+            {{-- @include('layouts.footer') --}}
+        </div>
+    </section>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
     </script>

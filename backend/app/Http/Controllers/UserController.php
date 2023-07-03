@@ -69,8 +69,6 @@ class UserController extends Controller
             // Update the authenticated user's background_photo column with the image name
             Auth::user()->update(['background_photo' => $imageName]);
 
-            $user->image_path = $name;
-
             return redirect()->back()->with('success', 'Background Wallpaper updated!');
         }
 
@@ -79,7 +77,7 @@ class UserController extends Controller
 
     public function delete(){
 
-        if($user->image_path != NULL){
+        if($imageName != NULL){
             Storage::delete('public'.$imageName);
         }
         return redirect()->back()->with('success', " Deleted!");

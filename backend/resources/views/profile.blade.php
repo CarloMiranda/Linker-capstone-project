@@ -264,17 +264,30 @@
         bottom: 0;
         left: 0;
     }
+
+    .wallpaper img {
+        position: relative;
+        margin-bottom: 1rem;
+    }
+
+    .wall-display button {
+        position: absolute;
+        bottom: 33%;
+        right: 6%;
+    }
 </style>
 <div class="profile-container">
     <div class="">
-        {{-- <img src="{{ asset('images/cover.png') }}" class="cover-img"> --}}
         <div class="wallpaper">
             <img src="{{ asset('storage/' . $user->wallpaper_picture) }}" class="cover-img">
-            
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-outline-secondary" style="position: relative; bottom: 45px; left: 73rem;" data-bs-toggle="modal" data-bs-target="#cover_modal">
-                <i class="fa-solid fa-camera"></i><span> Add Cover Photo</span>
-            </button>
+
+            <div class="wall-display">            
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-outline-secondary add-cover-btn" data-bs-toggle="modal" data-bs-target="#cover_modal">
+                    <i class="fa-solid fa-camera"></i><span> Add Cover Photo</span>
+                </button>
+            </div>
+        </div>
             
             <!-- Modal -->
             <div class="modal fade" id="cover_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -297,7 +310,7 @@
                 </div>
                 </div>
             </div>
-        </div>
+        
         
         <div class="profile-details">
             <div class="pd-left">

@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -45,15 +45,44 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function twats(){
+    public function twats()
+    {
         return $this->hasMany(Twat::class);
     }
 
-    public function hasReaction(int $twatId) {
+    public function hasReaction(int $twatId)
+    {
         $reaction = Reaction::where(['user_id' => $this->id, 'twat_id' => $twatId])->first();
         if ($reaction == null) {
             return false;
         }
         return true;
+    }
+
+    public function friends()
+    {
+        return $this->belongsToMany(User::class, 'friendships', 'user_id', 'friend_id')
+            ->withPivot('status')
+            ->wherePivot('status', 'accepted');
+    }
+
+    public function friendRequestsReceived()
+    {
+        return $this->belongsToMany(User::class, 'friendships', 'friend_id', 'user_id')
+            ->withPivot('status')
+            ->wherePivot('status', 'pending');
+    }
+
+    public function friendRequestsSent()
+    {
+        return $this->belongsToMany(User::class, 'friendships', 'user_id', 'friend_id')
+            ->withPivot('status')
+            ->wherePivot('status', 'pending');
+    }
+
+    public function addFriend(User $friend)
+    {
+        $this->friends()->attach($friend, ['status' => 'pending']);
+        $friend->friends()->attach($this, ['status' => 'requested']);
     }
 }

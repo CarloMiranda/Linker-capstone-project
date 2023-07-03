@@ -1,11 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\TwatController;
 use App\Http\Controllers\ReplyController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ReactionController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\FriendController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -44,8 +47,17 @@ Route::get('/reaction/{id}', [ReactionController::class, 'delete'])->name('react
 Route::post('/createreply', [ReplyController::class, 'create'])->name('createreply');
 Route::get('/deletereply/{id}', [ReplyController::class, 'delete'])->name('deletereply');
 
+// Uploading Pictures
 Route::post('/upload-profile-picture', [UserController::class, 'uploadProfilePicture'])->name('upload-profile-picture');
 Route::post('/upload-wallpaper-picture', [UserController::class, 'uploadWallpaperPicture'])->name('upload-wallpaper-picture');
+
+// Adding Friends
+Route::post('/add-friend/{id}', [FriendController::class, 'addFriend'])->name('addFriend');
+
+//Notifications
+Route::get('/notifications/count', 'NotificationController@count')->name('notifications.count');
+
+
 
 // --- Admin Routes --- //
 Route::get('/admin', function () {

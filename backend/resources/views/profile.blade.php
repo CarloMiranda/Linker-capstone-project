@@ -315,7 +315,7 @@
                 @if ($user->profile_picture)
                     <img src="{{ asset('storage/' . $user->profile_picture) }}" alt="Profile Picture" class="pd-image">
                 @elseif ($user->gender === 'female')
-                     <img src="{{ asset('images/female-avatar-profile-picture.png') }}" alt="Profile Picture" class="pd-image">
+                     <img src="{{ asset('images/female-avatar-profile-picture.jpg') }}" alt="Profile Picture" class="pd-image">
                 @else
                     <img src="{{ asset('images/male-avatar-profile-picture.jpg') }}" alt="Profile Picture" class="pd-image">
                 @endif
@@ -351,8 +351,11 @@
                     </div>
                     </div>
                 </div>
-                
+                     @if (Auth::check() && $user->id === Auth::user()->id)
                     <div style="margin-left: 100px;">
+                    @else
+                    <div style="margin-left: 130px;">
+                    @endif
                     @if ($user->twats()->count() > 0)
                         <h3>{{ $user->twats()->orderByDesc('created_at')->first()->user->name }}</h3>
                         @else
@@ -385,9 +388,25 @@
                 </div> --}}
             </div>
             <div class="pd-right">
+
+                @if (Auth::user()->id !== $user->id)
+                    @if (Auth::user()->friends->contains($user))
+                        <button class="btn btn-primary disabled">Friend</button>
+                        <button type="button"><img src="{{ asset('images/message.png') }}">Message</button>
+                    @elseif (Auth::user()->friendRequestsReceived->contains($user))
+                        <button class="btn btn-primary disabled">Friend Request Sent</button>
+                    @elseif (Auth::user()->friendRequestsSent->contains($user))
+                        <button class="btn btn-primary disabled">Friend Request Received</button>
+                        <button type="button"><img src="{{ asset('images/message.png') }}">Message</button>
+                    @else
+                        <form action="{{ route('addFriend', $user->id) }}" method="POST">
+                            @csrf
+                            <button type="submit"><img src="{{ asset('images/add-friends.png') }}">Add Friends</button>
+                        </form>
+                    @endif
+                @endif
+
                 
-                <button type="button"><img src="{{ asset('images/add-friends.png') }}">Friends</button>
-                <button type="button"><img src="{{ asset('images/message.png') }}">Message</button>
                 <br>
                 <a href=""><img src="{{ asset('images/more.png') }}"></a>
                 
@@ -454,7 +473,7 @@
                     <img src="{{ asset('storage/' . $user->profile_picture) }}" alt="Profile Picture">
                 @else
                     @if ($user->gender === 'female')
-                        <img src="{{ asset('images/female-avatar-profile-picture.png') }}" alt="Profile Picture">
+                        <img src="{{ asset('images/female-avatar-profile-picture.jpg') }}" alt="Profile Picture">
                     @else
                         <img src="{{ asset('images/male-avatar-profile-picture.jpg') }}" alt="Profile Picture">
                     @endif
@@ -508,7 +527,7 @@
                             <img src="{{ asset('storage/' . $twat->user->profile_picture) }}" alt="Profile Picture">
                             @else
                             @if ($twat->user->gender === 'female')
-                            <img src="{{ asset('images/female-avatar-profile-picture.png') }}" alt="Profile Picture">
+                            <img src="{{ asset('images/female-avatar-profile-picture.jpg') }}" alt="Profile Picture">
                             @else
                             <img src="{{ asset('images/male-avatar-profile-picture.jpg') }}" alt="Profile Picture">
                             @endif

@@ -12,7 +12,7 @@
                     @if ($user->profile_picture)
                         <img src="{{ asset('storage/' . $user->profile_picture) }}" style="border-radius: 50%;" alt="Profile Picture">
                     @elseif ($user->gender === 'female')
-                        <img src="{{ asset('images/female-avatar-profile-picture.png') }}" style="border-radius: 50%;" alt="Profile Picture">
+                        <img src="{{ asset('images/female-avatar-profile-picture.jpg') }}" style="border-radius: 50%;" alt="Profile Picture">
                     @else
                         <img src="{{ asset('images/male-avatar-profile-picture.jpg') }}" style="border-radius: 50%;" alt="Profile Picture">
                     @endif
@@ -72,7 +72,7 @@
                     <img src="{{ asset('storage/' . $user->profile_picture) }}" alt="Profile Picture">
                     @else
                         @if ($user->gender === 'female')
-                            <img src="{{ asset('images/female-avatar-profile-picture.png') }}" alt="Profile Picture">
+                            <img src="{{ asset('images/female-avatar-profile-picture.jpg') }}" alt="Profile Picture">
                         @else
                             <img src="{{ asset('images/male-avatar-profile-picture.jpg') }}" alt="Profile Picture">
                         @endif
@@ -132,7 +132,7 @@
                                      <img src="{{ asset('storage/' . $twat->user->profile_picture) }}" alt="Profile Picture">
                                 @else
                                     @if ($twat->user->gender === 'female')
-                                        <img src="{{ asset('images/female-avatar-profile-picture.png') }}" alt="Profile Picture">
+                                        <img src="{{ asset('images/female-avatar-profile-picture.jpg') }}" alt="Profile Picture">
                                     @else
                                         <img src="{{ asset('images/male-avatar-profile-picture.jpg') }}" alt="Profile Picture">
                                     @endif

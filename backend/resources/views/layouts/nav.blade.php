@@ -93,7 +93,12 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#"><ion-icon title="Notifications" name="{{ Request::is('notifications') ? 'notifications' : 'notifications-outline' }}"></ion-icon></a>
+                    <a href="#">
+                        <ion-icon title="Notifications" name="{{ Request::is('notifications') ? 'notifications' : 'notifications-outline' }}"></ion-icon>
+                        @if (isset($notificationCount) && $notificationCount > 0)
+                            <span class="badge badge-danger">{{ $notificationCount }}</span>
+                        @endif
+                    </a>
                 </li>
                 <li>
                     <a href="#"><ion-icon title="Messages" name="{{ Request::is('mail') ? 'mail' : 'mail-outline' }}"></ion-icon></a>
@@ -113,13 +118,12 @@
                 @auth
                     <div class="nav-profile" style="text-decoration:none">  
                    
-                        
-                    @if ($user->gender === 'female')
-                        <img src="{{ asset('images/female-avatar-profile-picture.png') }}" onclick="settingsMenuToggle()" alt="Profile Picture">
-                    @elseif ($user->gender === 'male')
-                        <img src="{{ asset('images/male-avatar-profile-picture.jpg') }}" onclick="settingsMenuToggle()" alt="Profile Picture">
-                    @else 
+                    @if (Auth::user()->name)
                         <img src="{{ asset('storage/' . ($user->id === Auth::id() ? $user->profile_picture : Auth::user()->profile_picture)) }}" onclick="settingsMenuToggle()">
+                    @elseif ($user->gender === 'female')
+                        <img src="{{ asset('images/female-avatar-profile-picture.jpg') }}" onclick="settingsMenuToggle()" alt="Profile Picture">
+                    @else
+                        <img src="{{ asset('images/male-avatar-profile-picture.jpg') }}" onclick="settingsMenuToggle()" alt="Profile Picture">
                     @endif
                     </div>
                     <div class="settings-menu">
@@ -129,12 +133,12 @@
                                 </div>
                                 <div class="dropdown-item mt-2 top">
                                 <a href="{{ route('profile', Auth::user()->id) }}">  
-                                @if ($user->gender === 'female')
-                                    <img src="{{ asset('images/female-avatar-profile-picture.png') }}" onclick="settingsMenuToggle()" alt="Profile Picture">
-                                @elseif ($user->gender === 'male')
-                                    <img src="{{ asset('images/male-avatar-profile-picture.jpg') }}" onclick="settingsMenuToggle()" alt="Profile Picture">
-                                @else 
+                                @if (Auth::user()->name)
                                     <img src="{{ asset('storage/' . ($user->id === Auth::id() ? $user->profile_picture : Auth::user()->profile_picture)) }}" onclick="settingsMenuToggle()">
+                                @elseif ($user->gender === 'female')
+                                    <img src="{{ asset('images/female-avatar-profile-picture.jpg') }}" onclick="settingsMenuToggle()" alt="Profile Picture">
+                                @else
+                                    <img src="{{ asset('images/male-avatar-profile-picture.jpg') }}" onclick="settingsMenuToggle()" alt="Profile Picture">
                                 @endif
                                 </a>
                                     <div class="ms-2 pt-2">

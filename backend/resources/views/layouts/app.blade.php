@@ -345,7 +345,7 @@ font-weight: 500;
         background-image: linear-gradient(transparent, rgba(0,0,0,0.5)), url({{ asset('storage/' . $user->profile_picture) }});
     @else
         @if ($user->gender === 'female')
-            background-image: linear-gradient(transparent, rgba(0,0,0,0.5)), url({{ asset('images/female-avatar-profile-picture.png') }});
+            background-image: linear-gradient(transparent, rgba(0,0,0,0.5)), url({{ asset('images/female-avatar-profile-picture.jpg') }});
         @else
             background-image: linear-gradient(transparent, rgba(0,0,0,0.5)), url({{ asset('images/male-avatar-profile-picture.jpg') }});
         @endif
@@ -696,6 +696,7 @@ font-weight: 500;
     }
     .user-profile img {
     width: 25px;
+    height: 25px;
     }
     #user-profile{
     display: none;
@@ -744,6 +745,7 @@ font-weight: 500;
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Datatable -->
     <link href="https://cdn.jsdelivr.net/npm/vanilla-datatables@latest/dist/vanilla-dataTables.min.css" rel="stylesheet" type="text/css">
     <script src="https://cdn.jsdelivr.net/npm/vanilla-datatables@latest/dist/vanilla-dataTables.min.js" type="text/javascript"></script>

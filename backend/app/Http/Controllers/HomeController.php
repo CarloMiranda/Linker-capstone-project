@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Twat;
 use App\Models\User;
+use App\Models\Notification;
 use Auth;
 
 class HomeController extends Controller

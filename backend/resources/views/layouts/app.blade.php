@@ -185,8 +185,8 @@ font-weight: 500;
 }
 
 .imp-links a img{
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 30px;
     margin-right: 15px;
 }
 

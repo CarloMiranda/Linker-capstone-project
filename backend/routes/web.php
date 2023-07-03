@@ -51,7 +51,7 @@ Route::get('/deletereply/{id}', [ReplyController::class, 'delete'])->name('delet
 Route::post('/upload-profile-picture', [UserController::class, 'uploadProfilePicture'])->name('upload-profile-picture');
 Route::post('/upload-wallpaper-picture', [UserController::class, 'uploadWallpaperPicture'])->name('upload-wallpaper-picture');
 Route::post('/upload-background-photo', [UserController::class, 'uploadBackgroundPhoto'])->name('upload-background-photo');
-Route::get('/delete-background-photo', [UserController::class, 'delete'])->name('delete-background-photo');
+Route::get('/delete-background-photo/{id}', [UserController::class, 'delete'])->name('delete-background-photo');
 
 // Adding Friends
 Route::post('/add-friend/{id}', [FriendController::class, 'addFriend'])->name('addFriend');

@@ -347,10 +347,6 @@
                                 </form>
                             </div>
                         </div>
-                        <div class="modal-footer">
-                        {{-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> --}}
-                        {{-- <button type="button" class="btn btn-primary">Understood</button> --}}
-                        </div>
                     </div>
                     </div>
                 </div>
@@ -400,7 +396,7 @@
                     <ul class="dropdown-menu p-1" style="background: var(--front-color); width: 195px !important;">
                       
                       <li style="border-bottom: 1px solid #626262; padding: 5px;"><a class="text-decoration-none text-secondary" type="button" data-bs-toggle="modal" data-bs-target="#background_photo"><i class="fa-solid fa-plus"></i> Add Wallpaper</a></li>
-                      <li style="border-bottom: 1px solid #626262; padding: 5px;"><a class="text-decoration-none text-secondary" type="button"><i href="{{ route('delete-background-photo', $user->background_photo) }}" class="fa-solid fa-circle-minus"></i> Remove Wallpaper</a></li>
+                      <li style="border-bottom: 1px solid #626262; padding: 5px;"><a class="text-decoration-none text-secondary" type="button"><i href="{{ route('delete-background-photo', ['id' => $user->id]) }}" class="fa-solid fa-circle-minus"></i> Remove Wallpaper</a></li>
                       <li style="border-bottom: 1px solid #626262; padding: 5px;"><a type="button" data-bs-toggle="modal" data-bs-target="#account_details">
                         <span class="text-decoration-none text-secondary"><i class="fa-solid fa-address-card"></i> Account Details</span>
                     </a></li>
@@ -427,10 +423,6 @@
                             <button type="submit" class="btn btn-secondary">Upload</button>
                         </form>
                     </div>
-                </div>
-                <div class="modal-footer">
-                {{-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> --}}
-                {{-- <button type="button" class="btn btn-primary">Understood</button> --}}
                 </div>
             </div>
             </div>

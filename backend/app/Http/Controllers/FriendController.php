@@ -13,17 +13,43 @@ class FriendController extends Controller
     {
         // Find the user to be added as a friend
         $friend = User::findOrFail($id);
-
+    
         // Add the friend relationship
         Auth::user()->addFriend($friend);
-
-        // Create a notification for the friend request
-        $notification = new Notification();
-        $notification->user_id = $friend->id;
-        $notification->type = 'friend_request';
-        $notification->save();
-
+    
+        // Create a notification for the recipient user
+        $message = "You have received a friend request from " . Auth::user()->name;
+        $friend->notifications()->create([
+            'message' => $message,
+            'read' => false,
+        ]);
+    
         // Redirect back or return a response
         return redirect()->back()->with('success', 'Friend added successfully.');
     }
+
+    public function confirmFriend(Request $request, $id)
+    {
+        // Retrieve the notification
+        $notification = Notification::findOrFail($id);
+
+        // Update the notification status
+        $notification->status = 'confirmed';
+        $notification->save();
+
+        return redirect()->back()->with('success', 'Friend request confirmed.');
+    }
+
+    public function deleteFriend(Request $request, $id)
+    {
+        // Retrieve the notification
+        $notification = Notification::findOrFail($id);
+
+        // Update the notification status
+        $notification->status = 'deleted';
+        $notification->save();
+
+        return redirect()->back()->with('success', 'Friend request deleted.');
+    }
 }
+

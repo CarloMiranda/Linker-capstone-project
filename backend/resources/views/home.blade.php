@@ -216,7 +216,7 @@
                                         <div>
                                             <span class="text-muted"><small>⏲ {{ $reply->created_at->diffForHumans() }}</small></span>
                                             @if($reply->user->id == Auth::user()->id)
-                                            <div class="dropdown mx-3 float-end">
+                                            <div class="dropdown ms-3 float-end">
                                                 <a href="#" class=" text-secondary" style="text-decoration:none" data-bs-toggle="dropdown"><i class="fas fa-ellipsis-v"></i></a>
                                                 <ul class="dropdown-menu">
                                                     <li><a class="dropdown-item" href="{{ route('deletereply', $reply->id) }}">Delete</a></li>

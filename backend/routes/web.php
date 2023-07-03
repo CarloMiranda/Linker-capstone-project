@@ -57,7 +57,9 @@ Route::get('/delete-background-photo/{id}', [UserController::class, 'delete'])->
 Route::post('/add-friend/{id}', [FriendController::class, 'addFriend'])->name('addFriend');
 
 //Notifications
-Route::get('/notifications/count', 'NotificationController@count')->name('notifications.count');
+Route::get('/notifications', [NotificationController::class, 'notification'])->name('notifications');
+Route::post('/confirm-friend/{notification}', [FriendController::class, 'confirmFriend'])->name('confirmFriend');
+Route::delete('/delete-friend/{notification}', [FriendController::class, 'deleteFriend'])->name('deleteFriend');
 
 
 

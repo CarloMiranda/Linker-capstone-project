@@ -86,4 +86,9 @@ class User extends Authenticatable
         $this->friends()->attach($friend, ['status' => 'pending']);
         $friend->friends()->attach($this, ['status' => 'requested']);
     }
+
+    public function notifications()
+    {
+        return $this->hasMany(Notification::class);
+    }
 }

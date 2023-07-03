@@ -43,6 +43,7 @@
 #app {
     background: linear-gradient(transparent, rgba(0, 0, 0, 0.2)), url({{ asset('storage/' . $user->background_photo) }});
     background-attachment: fixed;
+    background-size: cover;
 }
 
 nav {
@@ -54,7 +55,6 @@ nav {
     top: 0;
     z-index: 100;
     position: sticky;
-    
 }
 
 .logo {

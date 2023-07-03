@@ -28,11 +28,10 @@
 }
 
 .dark-theme {
-    /* --body-color: #091321; */
     --body-color: #000000;
     --nav-color: #0d0d0d;
     --bg-color: #24252624;
-    --front-color:#1e1f20fc;
+    --front-color:#151617fc;
     --icon-color: #626262;
 }
 

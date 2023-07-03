@@ -273,7 +273,7 @@
     .wall-display button {
         position: absolute;
         bottom: 33%;
-        right: 6%;
+        right: 7%;
     }
 </style>
 <div class="profile-container">
